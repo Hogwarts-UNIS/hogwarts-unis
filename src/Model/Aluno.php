@@ -1,15 +1,18 @@
 <?php
-class Aluno {
-    private String $nome;
-    private int $idade;
-
-
-    public function getNome() {
-        return $this->nome;
+class Aluno extends Bruxo {
+    
+    private bool $resposta;
+    
+    public function getResposta() {
+        return $this->resposta;
     }
 
-    public function getIdade() {
-        return $this->idade;
-    }
+    public function confirmaResposta() {
+        
+        $resposta = $this->resposta;
 
+        if($resposta) {
+            
+        }
+    }
 }
