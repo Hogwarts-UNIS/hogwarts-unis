@@ -1,5 +1,8 @@
 <?php 
 
+namespace App\Model;
+
+
 class Carta extends Aluno {
     private string $mensagem;
     private bool $temIdadeMinima;

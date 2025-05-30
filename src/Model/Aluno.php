@@ -1,4 +1,7 @@
 <?php
+
+namespace App\Model;
+
 class Aluno extends Bruxo {
     
     private bool $resposta;
@@ -12,7 +15,7 @@ class Aluno extends Bruxo {
         $resposta = $this->resposta;
 
         if($resposta) {
-            
+
         }
     }
 }

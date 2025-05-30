@@ -1,4 +1,8 @@
 <?php 
+
+namespace App\Model;
+
+
 class Bruxo {
     private string $role;
     private string $nome;
