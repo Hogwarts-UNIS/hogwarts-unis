@@ -1,4 +1,15 @@
 <?php
 class Aluno {
-    private $nome;
+    private String $nome;
+    private int $idade;
+
+
+    public function getNome() {
+        return $this->nome;
+    }
+
+    public function getIdade() {
+        return $this->idade;
+    }
+
 }
