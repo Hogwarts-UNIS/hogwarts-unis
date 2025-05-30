@@ -32,6 +32,13 @@ class Carta extends Aluno {
             Aguardamos ansiosamente o seu retorno até 31 de julho. 
             Atenciosamente,
             Diretor de Hogwarts';
+        } else {
+            $this->mensagem = 
+            ' Prezado Sr./Sra.'  . $nome . '
+            Lamentamos informar que você não atende aos requisitos de idade mínima para ser aceito na Escola de Magia e Bruxaria de Hogwarts. 
+            Agradecemos o seu interesse e esperamos que você possa se inscrever novamente no futuro. 
+            Atenciosamente,
+            Diretor de Hogwarts';
         }
     }
  
