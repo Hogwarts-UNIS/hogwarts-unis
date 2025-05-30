@@ -4,8 +4,17 @@ namespace App\Model;
 
 
 class Carta extends Aluno {
+
+
+    // pesquisar sobre array.push para listar os alunos
     private string $mensagem;
     private bool $temIdadeMinima;
+    private array $aprovados;
+
+    public function getAprovados() {
+        return $this->aprovados;
+    }
+
 
     public function getMensagem() {
         return $this->mensagem;
@@ -45,6 +54,10 @@ class Carta extends Aluno {
         }
     }
  
+    public function listaAprovados() {
+
+    }
+
 }
 
 ?>
