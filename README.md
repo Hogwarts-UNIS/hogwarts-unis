@@ -1,4 +1,4 @@
-# 🐘 PHP POO Skeleton
+# ⚡🦉 Sistema De Gestão com Tema Hogwarts
 
 [![PHP Version](https://img.shields.io/badge/php-8.1%2B-blue)](https://www.php.net/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
@@ -8,9 +8,17 @@
 
 ## 🇧🇷 Português
 
-Projeto base em PHP 8+ para uso em atividades da disciplina de **POO — Programação Orientada a Objetos**.  
-Ideal para estudantes dos cursos de **Análise e Desenvolvimento de Sistemas**, **Ciência da Computação** e **Engenharia de Software**.  
-Utiliza Composer e Autoload PSR-4 para ensinar boas práticas de organização e estruturação de código orientado a objetos.
+Trabalho Disciplinar em PHP com **POO — Programação Orientada a Objetos**.  
+Feito pelos alunos:  
+
+- Luiz Caetano
+- Maria Eduarda
+- Jussara
+- Diogo
+- Juliano Tempesta
+
+Primeiro período de **Engenharia de Software** do Centro Universitário do Sul de Minas - UNIS
+Utiliza Composer e Autoload PSR-4. 
 
 ### ✅ Estrutura
 ```
@@ -29,8 +37,8 @@ php-poo-skeleton/
 1. Clone o projeto:
 
 ```
-git clone https://github.com/angelomesquita/php-poo-skeleton.git
-cd php-poo-skeleton
+git clone https://github.com/Hogwarts-UNIS/hogwarts-unis.git
+cd Hogwarts-UNIS
 ```
 2. Instalação
 ```
