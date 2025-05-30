@@ -9,28 +9,30 @@
 ## 🇧🇷 Português
 
 Trabalho Disciplinar em PHP com **POO — Programação Orientada a Objetos**.  
-Feito pelos alunos:  
+Feito pelos alunos do primeiro período de **Engenharia de Software** e **Ciência da Computação** do Centro Universitário do Sul de Minas - UNIS.
 
+
+## Alunos: 
 - Luiz Caetano
 - Maria Eduarda
 - Jussara
 - Diogo
 - Juliano Tempesta
 
-Primeiro período de **Engenharia de Software** do Centro Universitário do Sul de Minas - UNIS
+
 Utiliza Composer e Autoload PSR-4. 
 
-### ✅ Estrutura
-```
-php-poo-skeleton/
-├── composer.json
-├── .gitignore
-├── README.md
-├── src/
-│   └── Model/
-│       └── Example.php
-└── app.php
-```
+### ✅ Módulos Implementados
+
+#### 01 - Módulo 1: Convite e Cadastro de alunos
+
+Automatiza envio de cartas-convite aos alunos que atingem a idade mínima
+para ingressar em Hogwarts.
+
+
+
+
+
 
 ### 🚀 Como Usar
 
@@ -60,46 +62,4 @@ Hi, OOP World in PHP!
 Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
 
 
-## 🇺🇸 English
 
-This is a PHP 8+ skeleton project designed for Object-Oriented Programming (OOP) classes.
-It serves as a base for practical exercises in Systems Analysis and Development, Computer Science, and Software Engineering courses.
-Composer and PSR-4 Autoload are used to teach best practices in modern PHP application development.
-
-### ✅ Structure
-```
-php-poo-skeleton/
-├── composer.json
-├── .gitignore
-├── README.md
-├── src/
-│   └── Model/
-│       └── Example.php
-└── app.php
-```
-
-### 🚀 How to use
-
-1. Clone the project:
-
-```
-git clone https://github.com/angelomesquita/php-poo-skeleton.git
-cd php-poo-skeleton
-```
-2. Install Composer autoloader
-```
-composer install
-composer dump-autoload
-```
-
-3. Run the file `app.php`
-```
-php app.php
-```
-4. You will see:
-```
-Hi, OOP World in PHP!
-```
-## License
-
-This project is licensed under the MIT License—see the [LICENSE](LICENSE) file for details.
