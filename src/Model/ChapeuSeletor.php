@@ -37,5 +37,27 @@ namespace app\model\LufaLUfa;
     {
         $this->CasaSelecionada = $casaSelecionada;
     }
+    public function perguntarSelecionarCasa(): void 
+    {
+        $pontos = [
+            'Gifinoria' => 0,
+            'Sonserina' => 0,
+            'Corvinal' => 0,
+            'LufaLufa' => 0,     
+    ];
+        echo "Bem-vindo ao Chapéu Seletor! \n";
+        echo "O que você mais gostaria de ser conhecido? \n";
+        echo "1 - O Sabio \n";
+        echo "2 - O Bom \n";
+        echo "3 - O Ousado \n";
+        echo "4 - O Grande \n";
+        $resposta = readline("Digite o número da opção mais se adequar a você: ");
+        switch ($resposta){
+            case '1' : $pontos['Corvinal']++; break;
+            case '2' : $pontos['LufaLufa']++; break;
+            case '3' : $pontos['Grifinoria']++; break;
+            case '4' : $pontos['Sonserina']++; break;
+        }
+    }
 }
 
