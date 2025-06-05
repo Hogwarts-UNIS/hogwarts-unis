@@ -7,8 +7,8 @@ namespace app\model\LufaLUfa;
 
     class ChapeuSeletor 
     {
-        private array $casas;
-        private string $casaSelecionada;
+        private array $Casas;
+        private string $CasaSelecionada;
 
     public function __construct()
     {
@@ -28,6 +28,14 @@ namespace app\model\LufaLUfa;
     {
         return $this->CasaSelecionada;
         
+    }
+    public function setCasas(array $casas): void 
+    {
+        $this->Casas = $casas;
+    }
+    public function setCasaSelecionada(string $casaSelecionada): void
+    {
+        $this->CasaSelecionada = $casaSelecionada;
     }
 }
 
