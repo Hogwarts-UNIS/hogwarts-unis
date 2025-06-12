@@ -1,10 +1,9 @@
 <?php
-
-namespace App\Model\Grifinoria;
-namespace app\model\Sonserina;
-namespace app\model\Corvinal;
-namespace app\model\LufaLUfa;
-
+namespace App\Model;
+use App\Model\Grifinoria;
+use App\Model\Sonserina;
+use App\Model\Corvinal;
+use App\Model\LufaLufa;
     class ChapeuSeletor 
     {
         private array $Casas;
@@ -46,18 +45,31 @@ namespace app\model\LufaLUfa;
             'LufaLufa' => 0,     
     ];
         echo "Bem-vindo ao Chapéu Seletor! \n";
-        echo "O que você mais gostaria de ser conhecido? \n";
-        echo "1 - O Sabio \n";
-        echo "2 - O Bom \n";
-        echo "3 - O Ousado \n";
-        echo "4 - O Grande \n";
+        echo "Quando você morrer, o que gostaria que as pessoas lembrassem de você? \n";
+        echo "1 - Que eu era corajoso \n";
+        echo "2 - Que eu era sábio \n";
+        echo "3 - Que eu era ambicioso \n";
+        echo "4 - Que eu era leal \n";
         $resposta = readline("Digite o número da opção mais se adequar a você: ");
-        switch ($resposta){
-            case '1' : $pontos['Corvinal']++; break;
-            case '2' : $pontos['LufaLufa']++; break;
-            case '3' : $pontos['Grifinoria']++; break;
-            case '4' : $pontos['Sonserina']++; break;
+        switch ($resposta) {
+            case '1':
+                $this->setCasaSelecionada('Grifinoria');
+                break;
+            case '2':
+                $this->setCasaSelecionada('corvinal');
+                break;
+            case '3':
+                $this->setCasaSelecionada('Sonserina');
+                break;
+            case '4':
+                $this->setCasaSelecionada('LufaLufa');
+                break;
+            default:
+                echo "Opção invalida. Por favor, tente novamnete.\n";
+                $this->setCasaSelecionada('');
+                $this->perguntarSelecionarCasa();
+                return;
         }
+        echo "Você foi selecionado para a casa: " . $this->getCasaSelecionada() . "\n";
     }
 }
-
