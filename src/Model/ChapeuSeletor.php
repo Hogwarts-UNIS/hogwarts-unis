@@ -8,6 +8,7 @@ use App\Model\LufaLufa;
     {
         private array $Casas;
         private string $CasaSelecionada;
+        private ?Aluno $aluno = null;
 
     public function __construct()
     {
@@ -36,14 +37,48 @@ use App\Model\LufaLufa;
     {
         $this->CasaSelecionada = $casaSelecionada;
     }
+    public function getAluno() : ?Aluno 
+    {
+        return $this->aluno;
+    }
+    public function setaluno(Aluno $aluno): void 
+    {
+        $this->aluno = $aluno;
+    }
+
+    Public function menu(): void 
+    {
+        while (true) {
+            echo "Bem-vindo agora que você é um aluno de Hogwarts, você precisa escolher uma casa. \n";
+            echo "1 - Começar a seleção \n";
+            echo "2 - Ver casa selecionada \n";
+            echo "3 - Sair \n";
+            $Opcao = readline("digite o número do serviço que deseja: ");
+
+            switch ($Opcao) {
+                case '1':
+                    $this->perguntarSelecionarCasa();
+                    break;
+                case '2':
+                    if ($this->getCasaSelecionada() !== '') {
+                        echo "Você está na casa: " . $this->getCasaSelecionada() . "\n";
+                    } else {
+                        echo "Você ainda não foi selecionado para uma casa.\n"; 
+                    }
+                    break;
+                case '3':
+                    echo "Parabéns {$this->aluno->getNome()} você foi selecionado para Hogwarts! \n";
+                    echo "Obrigado por usar o Chapéu Seletor. Até logo!\n";
+                    return;
+                default:
+                    echo "Opção inválida. Por favor, tente novamente.\n";
+            }
+        }
+    }
+
     public function perguntarSelecionarCasa(): void 
     {
-        $pontos = [
-            'Gifinoria' => 0,
-            'Sonserina' => 0,
-            'Corvinal' => 0,
-            'LufaLufa' => 0,     
-    ];
+
         echo "Bem-vindo ao Chapéu Seletor! \n";
         echo "Quando você morrer, o que gostaria que as pessoas lembrassem de você? \n";
         echo "1 - Que eu era corajoso \n";
@@ -51,25 +86,32 @@ use App\Model\LufaLufa;
         echo "3 - Que eu era ambicioso \n";
         echo "4 - Que eu era leal \n";
         $resposta = readline("Digite o número da opção mais se adequar a você: ");
+        $casa = null;
         switch ($resposta) {
             case '1':
-                $this->setCasaSelecionada('Grifinoria');
+               $casa = 'Grifinoria';
                 break;
             case '2':
-                $this->setCasaSelecionada('corvinal');
+                $casa = 'corvinal';
                 break;
             case '3':
-                $this->setCasaSelecionada('Sonserina');
+                $casa = 'Sonserina';
                 break;
             case '4':
-                $this->setCasaSelecionada('LufaLufa');
+                $casa = 'LufaLufa';
                 break;
             default:
                 echo "Opção invalida. Por favor, tente novamnete.\n";
-                $this->setCasaSelecionada('');
                 $this->perguntarSelecionarCasa();
                 return;
         }
-        echo "Você foi selecionado para a casa: " . $this->getCasaSelecionada() . "\n";
+        $this->setCasaSelecionada($casa);
+        if ($this->aluno) {
+            $this->aluno->setCasa($casa);
+            echo "O aluno {$this->aluno->getNome()} foi selecionado para a casa: " . $this->aluno->getCasa() . "\n";
+        }
+            else {
+                echo "Você foi selecionado para a casa: " . $this->getCasaSelecionada() . "\n";
+            }
     }
 }

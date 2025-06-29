@@ -8,6 +8,11 @@ class Bruxo {
     private string $nome;
     private int $idade;
 
+    public function __construct(string $nome, int $idade, string $email, string $role = 'bruxo') {
+        $this->nome = $nome;
+        $this->idade = $idade;
+        $this->role = $role;
+    }
 
     public function getNome() {
         return $this->nome;
