@@ -5,7 +5,7 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 
 use App\Model\Aluno;
 
-class GerenciamentoProfissional
+class GerenciamentoProfissional //jussara
 {
     private $professores;
     private $funcionarios;
@@ -105,55 +105,12 @@ class GerenciamentoProfissional
             echo "Funcionário" . $nome . "já existe.\n";
             return;
         }
-    }
-
         $funcionario = new Funcionario($nome, $cargo, $setor);
         $this->funcionarios[] = $funcionario;
         echo "Funcionário " . $nome . " cadastrado com sucesso!\n";
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
-               
-
-     
-    
-
-
-
-
-
-
-
-
+    //diogo
     public function mostrarDistribuicaoPorCasa(): void
     {
         $distribuicao = Aluno::getDistribuicaoPorCasa();
