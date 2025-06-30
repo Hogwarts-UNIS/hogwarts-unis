@@ -46,7 +46,7 @@ public function getCronograma(){
         }
     }
      public function exibirCronograma() {
-        echo "\n📅 Cronograma do Professor " . $this->nome . ":\n";
+        echo "\n Cronograma do Professor " . $this->nome . ":\n";
         echo "══════════════════════════════════════\n";
         foreach ($this->cronograma as $dia => $horarios) {
             printf("%-10s: ", $dia);
