@@ -1,5 +1,7 @@
 <?php
 namespace App\Model;
+use App\Model\Professor;
+use App\Model\Funcionario;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
@@ -34,7 +36,7 @@ class GerenciamentoProfissional //jussara
     }
     //metodos pra profs
     private function cadastrarProfessor($nome) {
-        if ($this->buscarProfessor($nome) != null) {
+        if ($this->buscarProfessor($nome) !== null) {
             echo "Erro: Professor " . $nome . " já existe!\n";
             return;
         }
@@ -102,7 +104,7 @@ class GerenciamentoProfissional //jussara
     }
     public function cadastrarFuncionario ($nome, $cargo, $setor){
         if ($this->buscarFuncionario ($nome)!==null) {
-            echo "Funcionário" . $nome . "já existe.\n";
+            echo "Funcionário"  . $nome .  "já existe.\n";
             return;
         }
         $funcionario = new Funcionario($nome, $cargo, $setor);
