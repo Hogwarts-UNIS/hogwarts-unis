@@ -18,7 +18,7 @@ Feito pelos alunos do primeiro período de **Engenharia de Software** e **Ciênc
 - Jussara
 - Diogo
 - Juliano Tempesta
--Gabriel Luis
+- Gabriel Luis
 
 
 Utiliza Composer e Autoload PSR-4. 
