@@ -1,6 +1,5 @@
 <?php
-class professor{
-    private $nome;
+class professor extends Bruxo {
     private $disciplinas;
     private $turmas;
     private $cronograma;
