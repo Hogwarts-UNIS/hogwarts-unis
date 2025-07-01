@@ -22,18 +22,6 @@ class professor extends Bruxo {
             $this->cronograma[$dia] = [];
     }
 }
-public function getNome(){
-    return $this->nome;
-}
-public function getDisciplinas(){
-    return $this->disciplinas;
-}
-public function getTurmas(){
-    return $this->turmas;
-}
-public function getCronograma(){
-    return $this->cronograma;
-}
     public function addDisciplina ($disciplina){
         if (!in_array($disciplina, $this->disciplinas)) {
             $this->disciplinas[] = $disciplina;
