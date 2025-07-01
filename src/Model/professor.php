@@ -8,14 +8,14 @@ class professor extends Bruxo {
     private $cronograma;
   
 
-   public function __construct(string $nome, int $idade) {
-        parent::__construct($nome, $idade, strtolower($nome) . "@hogwarts.edu.br", "professor");
-        $this->disciplinas = [];
-        $this->turmas = [];
-        $this->cronograma = [];
-        $this->abrirCronograma();
-    }
-    }
+ public function __construct(string $nome, int $idade = 0, string $email = '') {
+    parent::__construct($nome, $idade, $email, 'professor');
+    $this->disciplinas = [];
+    $this->turmas = [];
+    $this->cronograma = [];
+    $this->abrirCronograma();
+}
+
     public function abrirCronograma (){
        $diasSemana = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"];
         foreach ($diasSemana as $dia) {

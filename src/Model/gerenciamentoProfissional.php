@@ -35,16 +35,16 @@ class GerenciamentoProfissional //jussara
         return null;
     }
     //metodos pra profs
-    private function cadastrarProfessor($nome) {
-        if ($this->buscarProfessor($nome) !== null) {
-            echo "Erro: Professor " . $nome . " já existe!\n";
-            return;
-        }
-//ccadastro prof
-      $professor = new Professor($nome,45); // idade criada na classe bruxo
-        $this->professores[] = $professor;
-        echo "Professor " . $nome . " cadastrado com sucesso!\n";
+    //ccadastro prof
+   public function cadastrarProfessor($nome, $idade, $email) {
+    if ($this->buscarProfessor($nome) !== null) {
+        echo "Erro: Professor " . $nome . " já existe!\n";
+        return;
     }
+    $professor = new Professor($nome); 
+    $this->professores[] = $professor;
+    echo "Professor " . $nome . " cadastrado com sucesso!\n";
+   }
     //associa disciplina ao prof pelo nome
     public function associarDisciplina($nomeProfessor, $disciplina) {
         $professor = $this->buscarProfessor($nomeProfessor);
@@ -112,8 +112,8 @@ class GerenciamentoProfissional //jussara
         echo "Funcionário " . $nome . " cadastrado com sucesso!\n";
     }
 
-    //diogo
-    public function mostrarDistribuicaoPorCasa(): void
+    /*diogo
+     public function mostrarDistribuicaoPorCasa(): void
     {
         $distribuicao = Aluno::getDistribuicaoPorCasa();
         echo "Distribuição de alunos por casa:\n";
@@ -121,8 +121,7 @@ class GerenciamentoProfissional //jussara
             echo "$casa: $quantidade\n";
         }
     }
-}
-
 $gerente = new GerenciamentoProfissional();
 $gerente->mostrarDistribuicaoPorCasa();
-
+*/
+}
