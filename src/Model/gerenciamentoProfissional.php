@@ -76,7 +76,6 @@ class GerenciamentoProfissional
         try {
             $professor = new Professor($nome, $idade, $email);
             $this->professores[] = $professor;
-            echo "Professor '$nome' cadastrado com sucesso!\n";
             return true;
         } catch (Exception $e) {
             echo "Erro ao cadastrar professor: " . $e->getMessage() . "\n";
@@ -100,7 +99,6 @@ class GerenciamentoProfissional
         }
 
         $professor->addDisciplina($disciplina);
-        echo "Disciplina '$disciplina' associada ao professor '$nomeProfessor'!\n";
         return true;
     }
 
@@ -120,7 +118,6 @@ class GerenciamentoProfissional
         }
 
         $professor->addTurma($turma);
-        echo "Turma '$turma' associada ao professor '$nomeProfessor'!\n";
         return true;
     }
 
@@ -145,7 +142,6 @@ class GerenciamentoProfissional
         }
 
         $professor->addHorario($dia, $horario);
-        echo "Horário '$horario' adicionado para '$dia' no cronograma do professor '$nomeProfessor'!\n";
         return true;
     }
 
@@ -220,7 +216,6 @@ class GerenciamentoProfissional
         try {
             $funcionario = new Funcionario($nome, $cargo, $setor);
             $this->funcionarios[] = $funcionario;
-            echo "Funcionário '$nome' cadastrado com sucesso!\n";
             return true;
         } catch (Exception $e) {
             echo "Erro ao cadastrar funcionário: " . $e->getMessage() . "\n";

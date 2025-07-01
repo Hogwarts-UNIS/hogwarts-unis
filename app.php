@@ -14,7 +14,22 @@ use App\Model\Funcionario;
 //criando menu c acesso de aluno, professor e dumbledore(diretor)
 
 $gerenciador= new gerenciamentoProfissional();
+$gerenciador->cadastrarProfessor("Minerva McGonagall");
+$gerenciador->cadastrarProfessor("Severo Snape");
 
+$gerenciador->associarDisciplina("Minerva McGonagall", "Transfiguração");
+$gerenciador->associarDisciplina("Severo Snape", "Poções");
+
+$gerenciador->associarTurma("Minerva McGonagall", "1º Ano");
+$gerenciador->associarTurma("Severo Snape", "2º Ano");
+
+$gerenciador->addHorarioProfessor("Minerva McGonagall", "Segunda", "08:00 - 10:00");
+$gerenciador->addHorarioProfessor("Minerva McGonagall", "Quarta", "14:00 - 16:00");
+
+$gerenciador->addHorarioProfessor("Severo Snape", "Terça", "10:00 - 12:00");
+$gerenciador->addHorarioProfessor("Severo Snape", "Quinta", "15:00 - 17:00");
+
+// Não exibir mensagens automáticas, apenas o menu:
 echo "---Bem vindo ao menu de gerenciamento profissional de Hogwarts---\n";
 echo "Você é:\n";
 echo "1 -Aluno\n";
@@ -36,28 +51,11 @@ switch ($perfil){
     
     case 2: //dos professores
           $nome = readline("Digite o nome do professor: ");
-    if ($gerenciador->cadastrarProfessor("Severo Snape")){
-        return true;
-     } else{}
-        $gerenciador->cadastrarProfessor("Minerva McGonagall");
     echo "\n===== Menu do Professor $nome =====\n";
     do {
         echo "1 - Consultar Cronograma\n";
         echo "0 - Sair\n";
         $opcao = readline("Selecione uma das opções: ");
-
-$gerenciador->associarDisciplina("Minerva McGonagall", "Transfiguração");
-$gerenciador->associarDisciplina("Severo Snape", "Poções");
-
-$gerenciador->associarTurma("Minerva McGonagall", "1º Ano");
-$gerenciador->associarTurma("Severo Snape", "2º Ano");
-
-$gerenciador->addHorarioProfessor("Minerva McGonagall", "Segunda", "08:00 - 10:00");
-$gerenciador->addHorarioProfessor("Minerva McGonagall", "Quarta", "14:00 - 16:00");
-
-$gerenciador->addHorarioProfessor("Severo Snape", "Terça", "10:00 - 12:00");
-$gerenciador->addHorarioProfessor("Severo Snape", "Quinta", "15:00 - 17:00");
-
         switch ($opcao) {
             case '1':
                 $gerenciador->consultarCronogramaProfessor($nome);

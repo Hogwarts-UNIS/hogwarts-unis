@@ -5,7 +5,7 @@ namespace App\Model;
 
 class Bruxo {
     private string $role;
-    private string $nome;
+    protected string $nome;
     private int $idade;
 public function __construct(string $nome, int $idade = 0, string $email = '', string $role = 'bruxo') {
     $this->nome = $nome;
