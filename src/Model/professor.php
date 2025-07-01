@@ -1,15 +1,20 @@
 <?php
+namespace App\Model;
+
+require_once __DIR__ . '/Bruxo.php';
 class professor extends Bruxo {
     private $disciplinas;
     private $turmas;
     private $cronograma;
   
 
-    public function __construct($nome){
-        $this->nome = $nome;
+   public function __construct(string $nome, int $idade) {
+        parent::__construct($nome, $idade, strtolower($nome) . "@hogwarts.edu.br", "professor");
         $this->disciplinas = [];
         $this->turmas = [];
         $this->cronograma = [];
+        $this->abrirCronograma();
+    }
     }
     public function abrirCronograma (){
        $diasSemana = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"];
@@ -29,17 +34,17 @@ public function getTurmas(){
 public function getCronograma(){
     return $this->cronograma;
 }
-    public function AddDisciplina ($disciplina){
+    public function addDisciplina ($disciplina){
         if (!in_array($disciplina, $this->disciplinas)) {
             $this->disciplinas[] = $disciplina;
         }   
     }
-    public function AddTurma ($turma){
+    public function addTurma ($turma){
         if (!in_array($turma, $this->turmas)) {
             $this->turmas[] = $turma;
         }   
     }
-    public function AddHorario ($dia, $horario){
+    public function addHorario ($dia, $horario){
         if (array_key_exists($dia,$this->cronograma)){
             $this->cronograma[$dia][] = $horario;
         }

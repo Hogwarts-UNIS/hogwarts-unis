@@ -1,4 +1,6 @@
 <?php
+namespace App\Model;
+
 class funcionario{
     private $nome;
     private $cargo;
@@ -7,7 +9,7 @@ class funcionario{
     public function __construct($nome, $cargo, $setot){
         $this->nome=$nome;
         $this->cargo=$cargo;
-        $this->setor=$settor;
+        $this->setor=$setor;
     }
     public function getNome(){
         return $this->nome;
@@ -19,7 +21,7 @@ class funcionario{
         return $this->setor;
     }
     public function __toString(){
-        return sprintf("%s\n  Cargo:%s \n  Setor:%s",
+        return sprintf("%s\n  Cargo:%s\n  Setor:%s",
         $this->nome,
         $this->cargo,
         $this->setor);

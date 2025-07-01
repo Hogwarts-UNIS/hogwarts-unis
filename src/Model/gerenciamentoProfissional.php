@@ -41,7 +41,7 @@ class GerenciamentoProfissional //jussara
             return;
         }
 //ccadastro prof
-      $professor = new Professor($nome);
+      $professor = new Professor($nome,45); // idade criada na classe bruxo
         $this->professores[] = $professor;
         echo "Professor " . $nome . " cadastrado com sucesso!\n";
     }
@@ -56,7 +56,7 @@ class GerenciamentoProfissional //jussara
             echo "Disciplina '" . $disciplina . "' não disponível!\n";
             return;
         }
-        $professor->adicionarDisciplina($disciplina);
+        $professor->addDisciplina($disciplina);
         echo "Disciplina '" . $disciplina . "' associada ao professor " . $nomeProfessor . "\n";
     }
     //associa turma ao prof pelo nome
@@ -70,17 +70,17 @@ class GerenciamentoProfissional //jussara
             echo "Turma '" . $turma . "' não disponível!\n";
             return;
         }
-        $professor->adicionarTurma($turma);
+        $professor->addTurma($turma);
         echo "Turma '" . $turma . "' associada ao professor " . $nomeProfessor . "\n";
     }
     //adiciona horario ao cronograma do prof pelo nome
-    public function adicionarHorarioProfessor($nomeProfessor, $dia, $horario) {
+    public function addHorarioProfessor($nomeProfessor, $dia, $horario) {
         $professor = $this->buscarProfessor($nomeProfessor);
         if ($professor == null) {
             echo "Professor " . $nomeProfessor . " não encontrado!\n";
             return;
         }
-        $professor->adicionarHorario($dia, $horario);
+        $professor->addHorario($dia, $horario);
         echo "Horário adicionado ao cronograma do professor " . $nomeProfessor . "\n";
     }
     //para consultar horario do prof
