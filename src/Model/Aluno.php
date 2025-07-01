@@ -9,6 +9,7 @@ class Aluno extends Bruxo {
     protected ?\DateTime $dataEnvioConvite = null;
     protected ?\DateTime $dataRespostaConvite = null;
     protected ?string $casa = null;
+    private static array $alunos = [];
 
     public function __construct(string $nome, int $idade, string $email) {
         parent::__construct($nome, $idade, $email, 'aluno');
@@ -48,4 +49,20 @@ class Aluno extends Bruxo {
             $this->statusConvite = 'rejeitado';
         }
     }
+    public static function getDistribuicaoPorCasa(): array {
+        $distribuicao = [];
+        foreach (self::$alunos as $aluno) {
+            $casa = $aluno->getCasa();
+            if ($casa) {
+                if (!isset($distribuicao[$casa])) {
+                    $distribuicao[$casa] = 0;
+                }
+                $distribuicao[$casa]++;
+            }
+        }
+        return $distribuicao;
+
+    }
 }
+
+
