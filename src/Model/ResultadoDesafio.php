@@ -1,10 +1,8 @@
 <?php
 
-// app/Models/ResultadoDesafio.php
-
 class ResultadoDesafio
 {
-    private Inscricao $inscricao; // A quem pertence esse resultado
+    private Inscricao $inscricao;
     private int $pontuacaoObtida;
     private DateTime $dataRegistro;
 
