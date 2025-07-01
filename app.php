@@ -126,6 +126,7 @@ switch ($perfil){
     default:
         echo "Perfil inválido. Tente novamente.\n";
         break;
+    
 }
 echo "Agradecemos por usar nosso sistema, até mais, trouxa!\n";
 
