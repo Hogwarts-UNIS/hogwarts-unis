@@ -34,7 +34,7 @@
         if ($pontos > 0) {
             $this->pontuacaoTotal -= $pontos;
             if ($this->pontuacaoTotal < 0) {
-                $this->pontuacaoTotal = 0; // Pontuação nunca é negativa
+                $this->pontuacaoTotal = 0; 
             }
             echo "{$this->nome} perdeu {$pontos} pontos. Pontuação total: {$this->pontuacaoTotal}\n";
         }
