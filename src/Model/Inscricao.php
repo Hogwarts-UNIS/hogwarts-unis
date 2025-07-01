@@ -4,14 +4,12 @@ class Inscricao
 {
     private Aluno $aluno;
     private Torneio $torneio;
-    private DateTime $dataInscricao;
     private string $status;
 
     public function __construct(Aluno $aluno, Torneio $torneio)
     {
         $this->aluno = $aluno;
         $this->torneio = $torneio;
-        $this->dataInscricao = new DateTime();
         $this->status = "Pendente";
     }
 
@@ -23,11 +21,6 @@ class Inscricao
     public function getTorneio(): Torneio
     {
         return $this->torneio;
-    }
-
-    public function getDataInscricao(): DateTime
-    {
-        return $this->dataInscricao;
     }
 
     public function getStatus(): string

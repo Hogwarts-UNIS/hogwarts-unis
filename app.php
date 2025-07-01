@@ -11,6 +11,7 @@ use App\Model\gerenciamentoProfissional;
 use App\Model\Professor;
 use App\Model\Funcionario;
 
+
 //criando menu c acesso de aluno, professor e dumbledore(diretor)
 
 $gerenciador= new gerenciamentoProfissional();
@@ -35,6 +36,7 @@ echo "Você é:\n";
 echo "1 -Aluno\n";
 echo "2 -Professor\n";
 echo "3 -Diretor\n";
+echo "4 -Torneios e Desafios\n"; // Adicione esta linha
 
 $perfil= readline ("Qual é o número do seu perfil? ");
 
@@ -70,8 +72,8 @@ switch ($perfil){
     } while ($opcao !== '0');
     break;
     
-        case 3: //diretoria de dumbledore
-            do{
+    case 3: //diretoria de dumbledore
+        do{
                 echo "Menu de gerenciamento do diretor\n";
                 echo "1 -Cadastrar professor\n";
                 echo "2 -Associar disciplina a professor\n";
@@ -123,11 +125,243 @@ switch ($perfil){
                 }
             }while($opcao !== "0");
             break;
+    case 4:
+        require_once __DIR__ . '/src/Model/Casas.php';
+        require_once __DIR__ . '/src/Model/DumbledoreOffice.php';
+        require_once __DIR__ . '/src/Model/Torneio.php';
+        require_once __DIR__ . '/src/Model/Desafio.php';
+        require_once __DIR__ . '/src/Model/Inscricao.php';
+        require_once __DIR__ . '/src/Model/ResultadoDesafio.php';
+
+        echo "===== TORNEIOS DE HOGWARTS =====\n\n";
+
+        $dumbledoreOffice = new DumbledoreOffice();
+
+        $harry = new Aluno("Harry Potter", 11, "harry@hogwarts.com");
+        $harry->setCasa("Grifinória"); 
+        $dumbledoreOffice->registrarAluno($harry);
+
+        $hermione = new Aluno("Hermione Granger", 11, "hermione@hogwarts.com");
+        $hermione->setCasa("Grifinória");
+        $dumbledoreOffice->registrarAluno($hermione);
+
+        $draco = new Aluno("Draco Malfoy", 11, "draco@hogwarts.com");
+        $draco->setCasa("Sonserina");
+        $dumbledoreOffice->registrarAluno($draco);
+
+        $luna = new Aluno("Luna Lovegood", 10, "luna@hogwarts.com");
+        $luna->setCasa("Corvinal");
+        $dumbledoreOffice->registrarAluno($luna);
+
+        echo "\n";
+
+        // 1. Criar e Abrir um Torneio
+        $copaDasCasas = $dumbledoreOffice->criarTorneio(
+            "Copa das Casas",
+            "Pontuação Acumulada",
+            ["Regra 1: Pontos ganhos em desafios", "Regra 2: Pontos perdidos por infrações"],
+            "2025-09-01",
+            "2026-06-30",
+            "Hogwarts"
+        );
+        $dumbledoreOffice->abrirTorneio($copaDasCasas);
+
+        echo "\n";
+
+        // 2. Inscrever Alunos no Torneio
+        $inscricaoHarry = $dumbledoreOffice->inscreverAlunoEmTorneio($harry, $copaDasCasas);
+        $inscricaoHermione = $dumbledoreOffice->inscreverAlunoEmTorneio($hermione, $copaDasCasas);
+        $inscricaoDraco = $dumbledoreOffice->inscreverAlunoEmTorneio($draco, $copaDasCasas);
+        $inscricaoLuna = $dumbledoreOffice->inscreverAlunoEmTorneio($luna, $copaDasCasas);
+
+        echo "\n";
+        // 3. Adicionar Desafios ao Torneio
+        echo "===== INICIANDO DESAFIOS =====\n\n";
+
+        // Desafio: Duelo de Feitiços
+        $dueloFeiticos = $dumbledoreOffice->adicionarDesafioAoTorneio(
+            $copaDasCasas,
+            "Duelo de Feitiços",
+            "Alunos duelarão para demonstrar suas habilidades.",
+            ["Não use feitiços das trevas imperdoáveis"],
+            50, // Pontos máximos
+            "Salão Principal",
+            "2025-10-15 14:00"
+        );
+        $dueloFeiticos->iniciarDesafio();
+
+        // 4. Registrar Desempenho nos Desafios
+        echo "Registrando desempenho no Duelo de Feitiços:\n";
+        if ($inscricaoHarry) $dumbledoreOffice->registrarDesempenhoDesafio($dueloFeiticos, $inscricaoHarry, 50);
+        if ($inscricaoHermione) $dumbledoreOffice->registrarDesempenhoDesafio($dueloFeiticos, $inscricaoHermione, 40);
+        if ($inscricaoDraco) $dumbledoreOffice->registrarDesempenhoDesafio($dueloFeiticos, $inscricaoDraco, 30);
+        $dueloFeiticos->finalizarDesafio();
+
+        echo "\n";
+
+        // Desafio: Quiz de Poções
+        $quizPocoes = $dumbledoreOffice->adicionarDesafioAoTorneio(
+            $copaDasCasas,
+            "Quiz de Poções",
+            "Teste de conhecimento em preparação de poções.",
+            ["Consultar livros é permitido"],
+            30, // Pontos máximos
+            "Sala de Poções",
+            "2025-11-20 10:00"
+        );
+        $quizPocoes->iniciarDesafio();
+
+        echo "Registrando desempenho no Quiz de Poções:\n";
+        if ($inscricaoHermione) $dumbledoreOffice->registrarDesempenhoDesafio($quizPocoes, $inscricaoHermione, 30);
+        if ($inscricaoDraco) $dumbledoreOffice->registrarDesempenhoDesafio($quizPocoes, $inscricaoDraco, 20);
+        if ($inscricaoLuna) $dumbledoreOffice->registrarDesempenhoDesafio($quizPocoes, $inscricaoLuna, 25);
+        $quizPocoes->finalizarDesafio();
+
+        echo "\n";
+
+        // 5. Exibir Rankings e Relatórios
+        echo "===== EXIBINDO RANKINGS E RELATÓRIOS =====\n\n";
+
+        $dumbledoreOffice->gerarRankingCasas(); // Ranking geral das casas
+
+        echo "\n";
+
+        $dumbledoreOffice->gerarRankingTorneio($copaDasCasas); // Ranking de um torneio específico
+
+        echo "\n";
+
+        // Relatórios de desempenho individuais
+        $dumbledoreOffice->gerarRelatorioDesempenhoAluno($harry);
+        $dumbledoreOffice->gerarRelatorioDesempenhoAluno($hermione);
+        $dumbledoreOffice->gerarRelatorioDesempenhoAluno($draco);
+        $dumbledoreOffice->gerarRelatorioDesempenhoAluno($luna);
+
+
+        echo "\n===== ATÉ MAIS TROUXAS =====\n";
+        break;
     default:
         echo "Perfil inválido. Tente novamente.\n";
         break;
-}
-echo "Agradecemos por usar nosso sistema, até mais, trouxa!\n";
+} // <-- FECHA O SWITCH AQUI
 
+//teste jogos 
+
+//(Torneios e Desafios
+require_once __DIR__ . '/src/Model/Casas.php';
+require_once __DIR__ . '/src/Model/DumbledoreOffice.php';
+require_once __DIR__ . '/src/Model/Torneio.php';
+require_once __DIR__ . '/src/Model/Desafio.php';
+require_once __DIR__ . '/src/Model/Inscricao.php';
+require_once __DIR__ . '/src/Model/ResuladoDesafio.php';
+
+// Modelos de Alunos e Bruxos
+
+
+echo "===== TORNEIOS DE HOGWARTS =====\n\n";
+
+$dumbledoreOffice = new DumbledoreOffice();
+
+
+$harry = new Aluno("Harry Potter", 11, "harry@hogwarts.com");
+$harry->setCasa("Grifinória"); 
+$dumbledoreOffice->registrarAluno($harry);
+
+$hermione = new Aluno("Hermione Granger", 11, "hermione@hogwarts.com");
+$hermione->setCasa("Grifinória");
+$dumbledoreOffice->registrarAluno($hermione);
+
+$draco = new Aluno("Draco Malfoy", 11, "draco@hogwarts.com");
+$draco->setCasa("Sonserina");
+$dumbledoreOffice->registrarAluno($draco);
+
+$luna = new Aluno("Luna Lovegood", 10, "luna@hogwarts.com");
+$luna->setCasa("Corvinal");
+$dumbledoreOffice->registrarAluno($luna);
+
+echo "\n";
+
+// 1. Criar e Abrir um Torneio
+$copaDasCasas = $dumbledoreOffice->criarTorneio(
+    "Copa das Casas",
+    "Pontuação Acumulada",
+    ["Regra 1: Pontos ganhos em desafios", "Regra 2: Pontos perdidos por infrações"],
+    "2025-09-01",
+    "2026-06-30",
+    "Hogwarts"
+);
+$dumbledoreOffice->abrirTorneio($copaDasCasas);
+
+echo "\n";
+
+// 2. Inscrever Alunos no Torneio
+$inscricaoHarry = $dumbledoreOffice->inscreverAlunoEmTorneio($harry, $copaDasCasas);
+$inscricaoHermione = $dumbledoreOffice->inscreverAlunoEmTorneio($hermione, $copaDasCasas);
+$inscricaoDraco = $dumbledoreOffice->inscreverAlunoEmTorneio($draco, $copaDasCasas);
+$inscricaoLuna = $dumbledoreOffice->inscreverAlunoEmTorneio($luna, $copaDasCasas);
+
+echo "\n";
+// 3. Adicionar Desafios ao Torneio
+echo "===== INICIANDO DESAFIOS =====\n\n";
+
+// Desafio: Duelo de Feitiços
+$dueloFeiticos = $dumbledoreOffice->adicionarDesafioAoTorneio(
+    $copaDasCasas,
+    "Duelo de Feitiços",
+    "Alunos duelarão para demonstrar suas habilidades.",
+    ["Não use feitiços das trevas imperdoáveis"],
+    50, // Pontos máximos
+    "Salão Principal",
+    "2025-10-15 14:00"
+);
+$dueloFeiticos->iniciarDesafio();
+
+// 4. Registrar Desempenho nos Desafios
+echo "Registrando desempenho no Duelo de Feitiços:\n";
+if ($inscricaoHarry) $dumbledoreOffice->registrarDesempenhoDesafio($dueloFeiticos, $inscricaoHarry, 50);
+if ($inscricaoHermione) $dumbledoreOffice->registrarDesempenhoDesafio($dueloFeiticos, $inscricaoHermione, 40);
+if ($inscricaoDraco) $dumbledoreOffice->registrarDesempenhoDesafio($dueloFeiticos, $inscricaoDraco, 30);
+$dueloFeiticos->finalizarDesafio();
+
+echo "\n";
+
+// Desafio: Quiz de Poções
+$quizPocoes = $dumbledoreOffice->adicionarDesafioAoTorneio(
+    $copaDasCasas,
+    "Quiz de Poções",
+    "Teste de conhecimento em preparação de poções.",
+    ["Consultar livros é permitido"],
+    30, // Pontos máximos
+    "Sala de Poções",
+    "2025-11-20 10:00"
+);
+$quizPocoes->iniciarDesafio();
+
+echo "Registrando desempenho no Quiz de Poções:\n";
+if ($inscricaoHermione) $dumbledoreOffice->registrarDesempenhoDesafio($quizPocoes, $inscricaoHermione, 30);
+if ($inscricaoDraco) $dumbledoreOffice->registrarDesempenhoDesafio($quizPocoes, $inscricaoDraco, 20);
+if ($inscricaoLuna) $dumbledoreOffice->registrarDesempenhoDesafio($quizPocoes, $inscricaoLuna, 25);
+$quizPocoes->finalizarDesafio();
+
+echo "\n";
+
+// 5. Exibir Rankings e Relatórios
+echo "===== EXIBINDO RANKINGS E RELATÓRIOS =====\n\n";
+
+$dumbledoreOffice->gerarRankingCasas(); // Ranking geral das casas
+
+echo "\n";
+
+$dumbledoreOffice->gerarRankingTorneio($copaDasCasas); // Ranking de um torneio específico
+
+echo "\n";
+
+// Relatórios de desempenho individuais
+$dumbledoreOffice->gerarRelatorioDesempenhoAluno($harry);
+$dumbledoreOffice->gerarRelatorioDesempenhoAluno($hermione);
+$dumbledoreOffice->gerarRelatorioDesempenhoAluno($draco);
+$dumbledoreOffice->gerarRelatorioDesempenhoAluno($luna);
+
+
+echo "\n===== ATÉ MAIS TROUXAS =====\n";
 
 

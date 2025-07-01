@@ -1,6 +1,6 @@
 <?php
-    
-   class Casa
+
+class Casa
 {
     private string $nome;
     private int $pontuacaoTotal;
@@ -8,7 +8,7 @@
     public function __construct(string $nome)
     {
         $this->nome = $nome;
-        $this->pontuacaoTotal = 0; // Começa com 0 pontos
+        $this->pontuacaoTotal = 0;
     }
 
     public function getNome(): string
@@ -34,7 +34,7 @@
         if ($pontos > 0) {
             $this->pontuacaoTotal -= $pontos;
             if ($this->pontuacaoTotal < 0) {
-                $this->pontuacaoTotal = 0; 
+                $this->pontuacaoTotal = 0;
             }
             echo "{$this->nome} perdeu {$pontos} pontos. Pontuação total: {$this->pontuacaoTotal}\n";
         }
