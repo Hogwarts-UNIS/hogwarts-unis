@@ -1,15 +1,12 @@
 <?php
-
-require_once 'Casas.php';
-require_once 'Bruxo.php';
-require_once 'Aluno.php';
-require_once 'Inscricao.php';
-require_once 'ResultadoDesafio.php';
-require_once 'Desafio.php';
-require_once 'Torneio.php';
+namespace App\Model;
 
 use App\Model\Aluno;
-use App\Model\Bruxo;
+use DateTime;
+use App\Model\Casa;
+use App\Model\Torneio;
+use App\Model\Desafio;  
+use App\Model\Inscricao;
 
 class DumbledoreOffice
 {
@@ -63,6 +60,12 @@ class DumbledoreOffice
         }
         echo "Erro: Casa '{$nomeCasa}' não encontrada para criar aluno.\n";
         return null;
+    }
+
+    public function registrarAluno(Aluno $aluno): void
+    {
+        $this->alunos[] = $aluno;
+        echo "Aluno {$aluno->getNome()} registrado com sucesso!\n";
     }
 
     public function criarTorneio(string $nome, string $tipoDesafios, array $regras, string $dataInicioStr, string $dataFimStr, string $local): Torneio
@@ -200,22 +203,5 @@ class DumbledoreOffice
         }
     }
 
-    public function exibirRankingsSalaoPrincipal(): void
-    {
-        echo "\n========================================\n";
-        echo "       RANKINGS AO VIVO - SALÃO PRINCIPAL       \n";
-        echo "========================================\n";
-
-        $this->gerarRankingCasas();
-
-        foreach ($this->torneios as $torneio) {
-            if ($torneio->estaAtivo()) {
-                $this->gerarRankingTorneio($torneio);
-            }
-        }
-
-        echo "========================================\n";
-        echo "               ATUALIZADO AGORA               \n";
-        echo "========================================\n";
-    }
+   
 }

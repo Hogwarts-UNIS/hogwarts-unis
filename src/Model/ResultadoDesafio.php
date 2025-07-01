@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Model;
+use DateTime;
+use App\Model\Inscricao;
+
 class ResultadoDesafio
 {
     private Inscricao $inscricao;

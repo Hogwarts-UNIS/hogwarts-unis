@@ -1,5 +1,11 @@
 <?php
 
+namespace App\Model;
+use DateTime;
+use App\Model\Aluno;
+use App\Model\Inscricao;
+use App\Model\ResultadoDesafio;
+
 class Desafio
 {
     private string $nome;
@@ -11,8 +17,14 @@ class Desafio
     private string $status;
     private array $resultados;
 
-    public function __construct(string $nome, string $descricao, array $regrasEspecificas, int $pontuacaoBase, string $local, DateTime $data)
-    {
+    public function __construct(
+        string $nome,
+        string $descricao,
+        array $regrasEspecificas,
+        int $pontuacaoBase,
+        string $local,
+        \DateTime $data
+    ) {
         $this->nome = $nome;
         $this->descricao = $descricao;
         $this->regrasEspecificas = $regrasEspecificas;

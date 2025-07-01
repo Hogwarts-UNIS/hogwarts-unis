@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Model;
+
 class Inscricao
 {
     private Aluno $aluno;

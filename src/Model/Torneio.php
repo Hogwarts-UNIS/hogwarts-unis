@@ -6,15 +6,21 @@ class Torneio
     private string $nome;
     private string $tipoDesafios;
     private array $regras;
-    private DateTime $dataInicio;
-    private DateTime $dataFim;
+    private \DateTime $dataInicio;
+    private \DateTime $dataFim;
     private string $local;
     private array $desafios;
     private array $inscricoes;
     private bool $ativo;
 
-    public function __construct(string $nome, string $tipoDesafios, array $regras, DateTime $dataInicio, DateTime $dataFim, string $local)
-    {
+    public function __construct(
+        string $nome,
+        string $tipoDesafios,
+        array $regras,
+        \DateTime $dataInicio,
+        \DateTime $dataFim,
+        string $local
+    ) {
         $this->nome = $nome;
         $this->tipoDesafios = $tipoDesafios;
         $this->regras = $regras;
@@ -49,7 +55,6 @@ class Torneio
     public function adicionarDesafio(Desafio $desafio): void
     {
         $this->desafios[] = $desafio;
-        echo "Desafio '{$desafio->getNome()}' adicionado ao torneio '{$this->nome}'.\n";
     }
 
     public function adicionarInscricao(Inscricao $inscricao): void
@@ -68,5 +73,12 @@ class Torneio
     {
         $this->ativo = false;
         echo "Torneio '{$this->nome}' ENCERRADO.\n";
+    }
+
+    public function criarDesafio(string $nome, string $descricao, int $pontuacaoBase): Desafio
+    {
+        $desafio = new Desafio($nome, $descricao, [], $pontuacaoBase, "Local indefinido", new \DateTime());
+        $this->adicionarDesafio($desafio);
+        return $desafio;
     }
 }
