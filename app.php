@@ -57,8 +57,8 @@ do {
               $nome = readline("Digite o nome do professor: ");
         echo "\n===== MENU DO PROFESSOR $nome =====\n";
         do {
-            echo "1 - Consultar Cronograma\n";
-            echo "0 - Sair\n";
+            echo "1 - 📅 Consultar Cronograma\n";
+            echo "0 - 🧹 Sair\n";
             $opcao = readline("SELECIONE UMA DAS OPÇÕES: ");
             switch ($opcao) {
                 case '1':
@@ -77,15 +77,15 @@ do {
         case 3: //diretoria de dumbledore
             do{
                 echo "🧙 BEM VINDO AO MENU DE GERENCIAMENTO DO DIRETOR 🧙\n";
-                    echo "1 -Cadastrar professor\n";
-                    echo "2 -Associar disciplina a professor\n";
-                    echo "3 -Associar turma a professor\n";
-                    echo "4 -Adicionar horário ao professor\n";
-                    echo "5 -Consultar cronograma de professor\n";
-                    echo "6 -Cadastrar funcionário\n";
-                    echo "0- Sair do menu \n";
+                    echo "1 - 🧑‍🏫 Cadastrar professor\n";
+                    echo "2 - 📖 Associar disciplina a professor\n";
+                    echo "3 - 🧑‍🎓 Associar turma a professor\n";
+                    echo "4 - 🕰 Adicionar horário ao professor\n";
+                    echo "5 - 🔍 Consultar cronograma de professor\n";
+                    echo "6 - 👨‍💼Cadastrar funcionário\n";
+                    echo "0- 🧹 Sair do menu \n";
 
-                    $opcao = readline("Selecione uma opção: ");
+                    $opcao = readline("SELECIONE UMA OPÇÃO: ");
 
                     switch ($opcao) {
                         case 1:
@@ -99,7 +99,7 @@ do {
                             break;
                         case 3:
                             $nomeProfessor = readline("Digite o nome do professor: ");
-                            $turma = readline("Digite a turma (ex: 1°ano): ");
+                            $turma = readline("Digite a turma (ex: 1° ano): ");
                             $gerenciador->associarTurma($nomeProfessor, $turma);
                             break;
                         case 4:
@@ -115,12 +115,12 @@ do {
                             break;
                         case 6:
                             $nome = readline("Nome do funcionário: ");
-                            $cargo = readline("Cargo: ");
-                            $setor = readline("Setor: ");
+                            $cargo = readline("Cargo (ex:cozinheiro): ");
+                            $setor = readline("Setor(ex:cozinha): ");
                             $gerenciador->cadastrarFuncionario($nome, $cargo, $setor);
                             break;
                             case 0:
-                                echo "Saindo do menu.";
+                                echo "SAINDO DO MENU...";
                                 break;
                         default:
                             echo "Opção inválida. Tente novamente.\n";
@@ -132,15 +132,15 @@ do {
             $dumbledoreOffice = new DumbledoreOffice();
 
             do {
-                echo "\n1 - Cadastrar novo aluno";
-                echo "\n2 - Listar alunos cadastrados";
-                echo "\n3 - Iniciar torneio";
-                echo "\n4 - Criar desafio"; // Opção para criar desafio
-                echo "\n5 - Listar desafios"; // Listar desafios
-                echo "\n6 - Iniciar desafio"; // Iniciar desafio
-                echo "\n7 - Registrar desempenho dos alunos"; // Registrar desempenho
-                echo "\n8 - Finalizar desafio"; // Finalizar desafio
-                echo "\n0 - Voltar ao menu principal\n";
+                echo "\n1 - ➕ Cadastrar novo aluno";
+                echo "\n2 - 📝 Listar alunos cadastrados";
+                echo "\n3 - 🏆 Iniciar torneio";
+                echo "\n4 - 🎯 Criar desafio"; // Opção para criar desafio
+                echo "\n5 - ⚔️ Listar desafios"; // Listar desafios
+                echo "\n6 - 🧩 Iniciar desafio"; // Iniciar desafio
+                echo "\n7 - ✏️ Registrar desempenho dos alunos"; // Registrar desempenho
+                echo "\n8 - 🔚 Finalizar desafio"; // Finalizar desafio
+                echo "\n0 - 🧹 Voltar ao menu principal\n";
                 $opcaoTorneio = readline("Escolha uma opção: ");
 
                 switch ($opcaoTorneio) {
@@ -166,8 +166,8 @@ do {
                         }
 
                         $copaDasCasas = $dumbledoreOffice->criarTorneio(
-                            "Copa das Casas",
-                            "Pontuação Acumulada",
+                            "COPA DAS CASAS",
+                            "PONTUAÇÃO ACUMULADA",
                             ["Regra 1: Pontos ganhos em desafios", "Regra 2: Pontos perdidos por infrações"],
                             "2025-09-01",
                             "2026-06-30",
@@ -179,7 +179,7 @@ do {
                             $dumbledoreOffice->inscreverAlunoEmTorneio($aluno, $copaDasCasas);
                         }
 
-                        echo "Todos os alunos cadastrados foram inscritos no torneio!\n";
+                        echo "TODOS OS ALUNOS CADASTRADOS FORAM INSCRITOS NO TORNEIO!\n";
                     
                         break;
                     case '4': // Criar desafio
@@ -191,7 +191,7 @@ do {
                         $descricao = readline("Descrição do desafio: ");
                         $recompensa = readline("Recompensa (pontos): ");
                         $desafio = $copaDasCasas->criarDesafio($nomeDesafio, $descricao, (int)$recompensa);
-                        echo "Desafio criado!\n";
+                        echo "DESAFIO CRIADO!\n";
                         break;
                     case '5': // Listar desafios
                         if (!isset($copaDasCasas)) {
@@ -324,7 +324,7 @@ do {
     }
 } while ($perfil !== '0');
 
-echo "Agradecemos por usar nosso sistema, até mais.\n";
+echo "Agradecemos por usar nosso sistema, até mais, trouxa!\n";
 
 
 
