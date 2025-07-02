@@ -111,7 +111,7 @@ use App\Model\LufaLufa;
             $this->aluno->setCasa($casa);
             echo "---O aluno {$this->aluno->getNome()} foi selecionado para a casa: " . $this->aluno->getCasa() . "\n";
         }
-            else {
+            else {  
                 echo "Você foi selecionado para a casa: " . $this->getCasaSelecionada() . "\n";
             }
     }
