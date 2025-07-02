@@ -49,10 +49,10 @@ use App\Model\LufaLufa;
     Public function menu(): void 
     {
         while (true) {
-            echo "Bem-vindo agora que você é um aluno de Hogwarts, você precisa escolher uma casa. \n";
+            echo "BEM VINDO!! AGORA QUE VOCÊ É UM DOS NOSSOS ALUNOS, PRECISA ESCOLHER UMA CASA!🏘 \n";
             echo "1 - Começar a seleção \n";
             echo "2 - Ver casa selecionada \n";
-            echo "3 - Sair \n";
+            echo "3 - 🧹Sair \n";
             $Opcao = readline("digite o número do serviço que deseja: ");
 
             switch ($Opcao) {
@@ -67,7 +67,7 @@ use App\Model\LufaLufa;
                     }
                     break;
                 case '3':
-                    echo "Parabéns {$this->aluno->getNome()} você foi selecionado para Hogwarts! \n";
+                    echo "Parabéns {$this->aluno->getNome()} você foi selecionado para Hogwarts! 🎉\n";
                     echo "Obrigado por usar o Chapéu Seletor. Até logo!\n";
                     return;
                 default:
@@ -79,13 +79,14 @@ use App\Model\LufaLufa;
     public function perguntarSelecionarCasa(): void 
     {
 
-        echo "Bem-vindo ao Chapéu Seletor! \n";
+        echo "SEJA BEM VINDO AO CHAPÉU SELETOR!🎩 \n";
+        echo "RESPONDA A PERGUNTA DO CHAPÉU PARA SELECIONARMOS A SUA CASA ⬇\n";
         echo "Quando você morrer, o que gostaria que as pessoas lembrassem de você? \n";
         echo "1 - Que eu era corajoso \n";
         echo "2 - Que eu era sábio \n";
         echo "3 - Que eu era ambicioso \n";
         echo "4 - Que eu era leal \n";
-        $resposta = readline("Digite o número da opção mais se adequar a você: ");
+        $resposta = readline("DIGITE AQUI O NÚMERO DA OPÇÃO QUE VOCÊ MAIS SE IDENTIFICOU ");
         $casa = null;
         switch ($resposta) {
             case '1':

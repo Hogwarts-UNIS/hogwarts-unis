@@ -33,18 +33,19 @@ $gerenciador->addHorarioProfessor("Severo Snape", "Quinta", "15:00 - 17:00");
 $alunosCadastrados = []; // Inicializa o array de alunos cadastrados
 
 do {
-    echo "---Bem vindo ao menu de gerenciamento profissional de Hogwarts---\n";
-    echo "Você é:\n";
-    echo "1 - Aluno\n";
-    echo "2 - Professor\n";
-    echo "3 - Diretor\n";
-    echo "4 - Torneios e Desafios\n";
-    echo "5 - Enviar convite \n";
-    $perfil = readline("Qual é o número do seu perfil? ");
+    echo "=====🏰 BEM VINDO AO MENU DE GERENCIAMENTO PROFISSIONAL DE HOGWARTS 🏰=====\n";
+    echo "O que você procura?:\n";
+    echo "1 - 🔮 Área do Aluno\n";
+    echo "2 - 🍎 Área do Professor\n";
+    echo "3 - 🧙 Área do Diretor\n";
+    echo "4 - 🏆 Torneios e Desafios\n";
+    echo "5 - 🦉 Enviar convite \n";
+    $perfil = readline("QUAL É O NÚMERO DO SEU PERFIL?");
 
     switch ($perfil){
         case 1: //dos alunos
-            $nome = readline("Digite o nome do aluno: ");
+            echo("🔮 BEM VINDO AO MENU DO ALUNO 🔮\n");
+            $nome = readline("Digite o nome do aluno:\n ");
             $idade = (int) readline("Digite a idade do aluno: ");
             $email = readline("Digite seu email (ou deixe vazio): ");
             $aluno = new Aluno($nome, $idade, $email);
@@ -55,6 +56,7 @@ do {
             break;
         
         case 2: //dos professores
+            echo "🍎 BEM VINDO AO MENU DO PROFESSOR 🍎n";
               $nome = readline("Digite o nome do professor: ");
         echo "\n===== Menu do Professor $nome =====\n";
         do {
@@ -77,6 +79,7 @@ do {
         
         case 3: //diretoria de dumbledore
             do{
+                echo "🧙 BEM VINDO AO MENU DO DIRETOR 🧙n";
                     echo "Menu de gerenciamento do diretor\n";
                     echo "1 -Cadastrar professor\n";
                     echo "2 -Associar disciplina a professor\n";
@@ -128,8 +131,8 @@ do {
                     }
                 }while($opcao !== "0");
                 break;
-        case 4:
-            echo "===== TORNEIOS DE HOGWARTS =====\n\n";
+        case 4: 
+            echo "🏆 TORNEIOS DE HOGWARTS 🏆 \n";
             $dumbledoreOffice = new DumbledoreOffice();
 
             do {
@@ -291,11 +294,12 @@ do {
             } while ($opcaoTorneio !== '0');
             break;
         case 5:
+            echo "🦉 ENVIAR CONVITES 🦉\n";
             if (empty($alunosCadastrados)) {
                 echo "Nenhum aluno cadastrado para envio de convite.\n";
                 break;
             }
-            echo "\n--- Alunos Cadastrados ---\n";
+            echo "\n📚 ALUNOS CADASTRADOS 📚\n";
             foreach ($alunosCadastrados as $i => $aluno) {
                 echo ($i+1) . " - " . $aluno->getNome() . " (" . $aluno->getCasa() . ")\n";
             }
