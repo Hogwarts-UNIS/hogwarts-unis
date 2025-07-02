@@ -15,6 +15,8 @@ use App\Model\Carta;
 use App\Model\Alerta;
 
 
+$dumbledoreOffice = new DumbledoreOffice();
+
 $gerenciador = new gerenciamentoProfissional();
 
 $gerenciador->cadastrarProfessor("Minerva McGonagall", 0, '', false);
@@ -221,7 +223,6 @@ do {
                 break;
         case 4: 
             echo "🏆 TORNEIOS DE HOGWARTS 🏆 \n";
-            $dumbledoreOffice = new DumbledoreOffice();
 
             do {
                 echo "\n1 - ➕ Cadastrar novo aluno";
@@ -387,8 +388,8 @@ do {
             $idade = (int)readline("Digite a idade do aluno: ");
             $email = readline("Digite o email do aluno: ");
             $aluno = new Aluno($nome, $idade, $email);
-            $aluno->setCasa($casa);
             $alunosCadastrados[] = $aluno;
+            $dumbledoreOffice->registrarAluno($aluno);
 
             if (empty($alunosCadastrados)) {
                 echo "Nenhum aluno cadastrado para envio de convite.\n";

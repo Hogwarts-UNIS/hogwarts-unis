@@ -203,5 +203,15 @@ class DumbledoreOffice
         }
     }
 
-   
+    public function listarAlunos()
+{
+    if (empty($this->alunos)) {
+        echo "Nenhum aluno cadastrado!\n";
+        return;
+    }
+    echo "\n--- Alunos Cadastrados ---\n";
+    foreach ($this->alunos as $i => $aluno) {
+        echo ($i+1) . " - " . $aluno->getNome() . " (" . $aluno->getCasa() . ")\n";
+    }
+}
 }
