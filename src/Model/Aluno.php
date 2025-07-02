@@ -10,6 +10,7 @@ class Aluno extends Bruxo {
     protected ?\DateTime $dataRespostaConvite = null;
     protected ?string $casa = null;
     private static array $alunos = [];
+    private ?string $email = null;
 
     public function __construct(string $nome, int $idade, string $email) {
         parent::__construct($nome, $idade, $email, 'aluno');
@@ -33,6 +34,9 @@ class Aluno extends Bruxo {
 
     public function getCasa(): ?string {
         return $this->casa;
+    }
+    public function getEmail(): ?string {
+        return $this->email;
     }
 
     public function setCasa(string $casa): void {
@@ -62,6 +66,11 @@ class Aluno extends Bruxo {
         }
         return $distribuicao;
 
+    }
+        public function marcarConviteEnviado(): void
+    {
+        $this->dataEnvioConvite = new \DateTime();
+        $this->statusConvite = 'enviado';
     }
 }
 

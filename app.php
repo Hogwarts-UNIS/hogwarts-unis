@@ -11,9 +11,10 @@ use App\Model\gerenciamentoProfissional;
 use App\Model\Professor;
 use App\Model\Funcionario;
 use App\Model\DumbledoreOffice;
+use App\Model\Carta;
 
 
-$gerenciador= new gerenciamentoProfissional();
+$gerenciador = new gerenciamentoProfissional();
 $gerenciador->cadastrarProfessor("Minerva McGonagall");
 $gerenciador->cadastrarProfessor("Severo Snape");
 
@@ -301,8 +302,13 @@ do {
             $num = (int)readline("Digite o número do aluno para enviar o convite: ") - 1;
             if (isset($alunosCadastrados[$num])) {
                 $aluno = $alunosCadastrados[$num];
-                // Usa o método da classe Aluno para marcar o convite como pendente
-                $aluno->confirmaResposta(false); // status pendente/rejeitado até aceitar
+                $carta = new Carta($aluno);
+                $carta->enviaCarta();
+                $status = $aluno->getStatusConvite();
+                echo "Status do convite: $status\n";
+                $carta->exibirCarta();
+
+                $aluno->confirmaResposta(false); 
                 echo "Convite enviado para {$aluno->getNome()}! Aguarde a resposta.\n";
             } else {
                 echo "Aluno inválido!\n";
