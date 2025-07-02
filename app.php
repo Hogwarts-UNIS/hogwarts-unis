@@ -12,6 +12,7 @@ use App\Model\Professor;
 use App\Model\Funcionario;
 use App\Model\DumbledoreOffice;
 use App\Model\Carta;
+use App\Model\Alerta;
 
 
 $gerenciador = new gerenciamentoProfissional();
@@ -40,17 +41,85 @@ do {
     $perfil = readline("QUAL É O NÚMERO DO SEU PERFIL?");
 
     switch ($perfil){
-        case 1: //dos alunos
-            echo("🔮 BEM VINDO AO MENU DO ALUNO 🔮\n");
-            $nome = readline("Digite o nome do aluno:\n ");
-            $idade = (int) readline("Digite a idade do aluno: ");
-            $email = readline("Digite seu email (ou deixe vazio): ");
-            $aluno = new Aluno($nome, $idade, $email);
-            $chapeu = new ChapeuSeletor();
-            $chapeu->setAluno($aluno);
-            $chapeu->menu();
-            $alunosCadastrados[] = $aluno;
+        case 1: // dos alunos
+            if (empty($alunosCadastrados)) {
+                echo "Nenhum aluno cadastrado. Cadastre um aluno pelo menu de convites primeiro!\n";
+                break;
+            }
+            echo "\n===== ALUNOS CADASTRADOS =====\n";
+            foreach ($alunosCadastrados as $i => $aluno) {
+                echo ($i+1) . " - " . $aluno->getNome() . " (Casa: " . ($aluno->getCasa() ?? "Sem casa") . ")\n";
+            }
+            $num = (int)readline("Digite o número do aluno para acessar o menu: ") - 1;
+            if (!isset($alunosCadastrados[$num])) {
+                echo "Aluno inválido!\n";
+                break;
+            }
+            $aluno = $alunosCadastrados[$num];
+            $nome = $aluno->getNome();
+
+    do {
+        echo "\n===== MENU DO ALUNO $nome =====\n";
+        echo "1 - 🎩 Escolher casa (Chapéu Seletor)\n";
+        echo "2 - 📧 Ver status do convite\n";
+        echo "3 - ✅ Aceitar convite\n";
+        echo "4 - ❌ Recusar convite\n";
+        echo "5 - 📢 Avisos do Diretor\n";
+        echo "6 - 📢 Avisos do Professor\n";
+        echo "0 - 🧹 Sair\n";
+        $opcaoAluno = readline("Escolha uma opção: ");
+
+        switch ($opcaoAluno) {
+            case '1':
+                $chapeu = new ChapeuSeletor();
+                $chapeu->setAluno($aluno);
+                $chapeu->menu();
+                break;
+            case '2':
+                echo "Status do convite: " . $aluno->getStatusConvite() . "\n";
+                break;
+            case '3':
+                $aluno->confirmaResposta(true);
+                echo "Convite aceito!\n";
+                break;
+            case '4':
+                $aluno->confirmaResposta(false);
+                echo "Convite recusado!\n";
+                break;
+            case '5':
+            if (empty($avisosGerais)) {
+                    echo "Nenhum aviso do diretor no momento.\n";
+            } else {
+                    echo "\n 🧙AVISOS DO DIRETOR!!:\n";
+                    foreach ($avisosGerais as $aviso) {
+                        echo "🔔 " . $aviso->getnotificacao() . "\n";
+                        echo "📄 " . $aviso->getaviso() . "\n";
+                        echo "Tipo: " . $aviso->gettipo() . "\n";
+                        echo "--------------------------\n";
+                    }
+            }
             break;
+            case '6':
+            if (empty($avisosProfessores)) {
+                    echo "Nenhum aviso do diretor no momento.\n";
+                }  else {
+                    echo "\n 🍎 AVISOS DO PROFESSOR!!:\n";
+                    foreach ($avisosProfessores as $aviso) {
+                        echo "🔔 " . $aviso->getnotificacao() . "\n";
+                        echo "📄 " . $aviso->getaviso() . "\n";
+                        echo "Tipo: " . $aviso->gettipo() . "\n";
+                        echo "--------------------------\n";
+                    }
+                }
+                break;
+            case '0':
+                echo "Saindo do menu do aluno...\n";
+                break;
+            default:
+                echo "Opção inválida!\n";
+        }
+    } while ($opcaoAluno !== '0');
+    break;
         
         case 2: //dos professores
             echo "🍎 BEM VINDO AO MENU DO PROFESSOR 🍎\n";
@@ -58,12 +127,24 @@ do {
         echo "\n===== MENU DO PROFESSOR $nome =====\n";
         do {
             echo "1 - 📅 Consultar Cronograma\n";
+            echo "2 - 📧 Enviar Aviso para os alunos\n";
             echo "0 - 🧹 Sair\n";
             $opcao = readline("SELECIONE UMA DAS OPÇÕES: ");
             switch ($opcao) {
                 case '1':
                     $gerenciador->consultarCronogramaProfessor($nome);
                     break;
+                case '2':
+                $notificacao = readline("Digite o titulo da notificação: ");
+                $aviso = readline("Digite o Aviso que deseja enviar: ");
+                $tipo = readline("Digite sobre oque e a notificação (aula, evento, etc): ");
+                $alerta = new Alerta($notificacao, $aviso, $tipo);
+                $avisosProfessores[] = $alerta;
+                echo "Notificação Criada!\n";
+                echo "Titulo: " . $alerta->getnotificacao() . "\n";
+                echo "Aviso: " .$alerta->getaviso() . "\n";
+                echo "Tipo: " . $alerta->gettipo() . "\n";
+                break;"-----------\n";
                 case '0':
                     echo "SAINDO DO SISTEMA DO PROFESSOR $nome...\n";
                     break;
@@ -83,7 +164,8 @@ do {
                     echo "4 - 🕰 Adicionar horário ao professor\n";
                     echo "5 - 🔍 Consultar cronograma de professor\n";
                     echo "6 - 👨‍💼Cadastrar funcionário\n";
-                    echo "0- 🧹 Sair do menu \n";
+                    echo "7 - 📨 Enviar Alerta \n";
+                    echo "0 - 🧹 Sair do menu \n";
 
                     $opcao = readline("SELECIONE UMA OPÇÃO: ");
 
@@ -119,6 +201,16 @@ do {
                             $setor = readline("Setor(ex:cozinha): ");
                             $gerenciador->cadastrarFuncionario($nome, $cargo, $setor);
                             break;
+                        case 7:
+                            $notificacao = readline("Digite o titulo da notificação: ");
+                            $aviso = readline("Digite o Aviso que deseja enviar: ");
+                            $tipo = readline("Digite sobre oque e a notificação (aula, evento, etc): ");
+                            $alerta = new Alerta($notificacao, $aviso, $tipo);
+                            $avisosGerais[] = $alerta;
+                            echo "Notificação Criada!\n";
+                            echo "Titulo: " . $alerta->getnotificacao() . "\n";
+                            echo "Aviso: " .$alerta->getaviso() . "\n";
+                            echo "Tipo: " . $alerta->gettipo() . "\n";
                             case 0:
                                 echo "SAINDO DO MENU...";
                                 break;
@@ -291,6 +383,13 @@ do {
             break;
         case 5:
             echo "🦉 ENVIAR CONVITES 🦉\n";
+            $nome = readline("Digite o nome do aluno: ");
+            $idade = (int)readline("Digite a idade do aluno: ");
+            $email = readline("Digite o email do aluno: ");
+            $aluno = new Aluno($nome, $idade, $email);
+            $aluno->setCasa($casa);
+            $alunosCadastrados[] = $aluno;
+
             if (empty($alunosCadastrados)) {
                 echo "Nenhum aluno cadastrado para envio de convite.\n";
                 break;

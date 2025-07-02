@@ -10,15 +10,15 @@ class Alerta {
 
 
     public function __construct(string $notificacao, string $aviso, string $tipo) {
-        $this->$notificacao = $notificacao;
+        $this->notificacao = $notificacao;
         $this->aviso = $aviso;
         $this->tipo = $tipo;
     }
 
     public function getnotificacao() : string {
         return $this->notificacao;
-    }
-    public function setnotificaca(string $notificacao): void {
+    }   
+    public function setnotificacao(string $notificacao): void {
         $this->notificacao = $notificacao;
     }
     public function getaviso() : string {
@@ -28,11 +28,12 @@ class Alerta {
         $this->aviso = $aviso;
     }
     public function gettipo() : string {
-        return $thius->tipo;
+        return $this->tipo;
     }
     public function settipo(string $tipo) : void {
         $this->tipo = $tipo;
     }
+
 }
 
 
