@@ -1,7 +1,9 @@
 <?php
 namespace App\Model;
+use App\Model\Avaliacao;
 
 require_once __DIR__ . '/Bruxo.php';
+require_once __DIR__ . '/Avaliacao.php';
 class professor extends Bruxo {
     private $disciplinas;
     private $turmas;
@@ -55,7 +57,26 @@ class professor extends Bruxo {
         return sprintf("%s\n   Disciplinas: %s\n   Turmas: %s", 
             $this->nome, $disciplinasStr, $turmasStr);
     }
+    public function registrarNota(Aluno $aluno, string $disciplina, float $nota): void
+    {
+        $avaliacao = new Avaliacao($disciplina, $nota);
+        $aluno->getBoletim()->adicionarAvaliacao($avaliacao);
+        echo "-> Prof. {$this->getNome()} registrou a nota $nota para {$aluno->getNome()} em $disciplina.\n\n";
+    }
+
+    public function darPontos(Casa $casa, int $pontos, string $motivo): void
+    {
+        echo "-> Prof. {$this->getNome()} deu $pontos pontos para a {$casa->getNome()} por: '$motivo'.\n";
+        $casa->adicionarPontos($pontos);
+    }
+
+    public function tirarPontos(Casa $casa, int $pontos, string $motivo): void
+    {
+        echo "-> Prof. {$this->getNome()} tirou $pontos pontos da {$casa->getNome()} por: '$motivo'.\n";
+        $casa->adicionarPontos(-$pontos);
+    }
 }
+
 
 
 

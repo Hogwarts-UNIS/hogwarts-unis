@@ -274,4 +274,15 @@ class GerenciamentoProfissional
     {
         return $this->funcionarios;
     }
+
+    public function getProfessorPorNome(string $nome): ?Professor
+    {
+        foreach ($this->professores as $professor) {
+            if ($professor->getNome() === $nome) {
+                return $professor;
+            }
+        }
+        return null;
+    }
+
 }

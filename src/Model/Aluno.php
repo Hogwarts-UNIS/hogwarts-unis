@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Model;
+use App\Model\Boletim;
 
 class Aluno extends Bruxo {
     
@@ -11,9 +12,11 @@ class Aluno extends Bruxo {
     protected ?string $casa = null;
     private static array $alunos = [];
     private ?string $email = null;
+    protected Boletim $boletim;
 
     public function __construct(string $nome, int $idade, string $email) {
         parent::__construct($nome, $idade, $email, 'aluno');
+        $this->boletim = new Boletim();
     }
     
     public function getResposta(): bool {
@@ -42,6 +45,17 @@ class Aluno extends Bruxo {
     public function setCasa(string $casa): void {
         $this->casa = $casa;
     }
+     public function getBoletim(): Boletim
+    {
+        return $this->boletim;
+    }
+
+    public function consultarBoletim(): void
+    {
+        echo "Exibindo boletim de {$this->getNome()}:\n";
+        $this->boletim->exibir();
+    }
+
 
     public function confirmaResposta(bool $aceita = true): void {
         $this->resposta = $aceita;

@@ -13,6 +13,10 @@ use App\Model\Funcionario;
 use App\Model\DumbledoreOffice;
 use App\Model\Carta;
 use App\Model\Alerta;
+use App\Model\Torneio;
+use App\Model\Avaliacao;
+
+
 
 
 $dumbledoreOffice = new DumbledoreOffice();
@@ -68,6 +72,7 @@ do {
         echo "4 - ❌ Recusar convite\n";
         echo "5 - 📢 Avisos do Diretor\n";
         echo "6 - 📢 Avisos do Professor\n";
+        echo "7 - 📝 Consultar Boletim\n";
         echo "0 - 🧹 Sair\n";
         $opcaoAluno = readline("Escolha uma opção: ");
 
@@ -114,6 +119,10 @@ do {
                     }
                 }
                 break;
+            case '7':
+                    echo "\n===== BOLETIM DE " . $aluno->getNome() . " =====\n";
+                    $aluno->getBoletim()->exibir();
+                break;
             case '0':
                 echo "Saindo do menu do aluno...\n";
                 break;
@@ -130,6 +139,7 @@ do {
         do {
             echo "1 - 📅 Consultar Cronograma\n";
             echo "2 - 📧 Enviar Aviso para os alunos\n";
+            echo "3 - 📝 Dar nota para aluno\n";
             echo "0 - 🧹 Sair\n";
             $opcao = readline("SELECIONE UMA DAS OPÇÕES: ");
             switch ($opcao) {
@@ -147,6 +157,31 @@ do {
                 echo "Aviso: " .$alerta->getaviso() . "\n";
                 echo "Tipo: " . $alerta->gettipo() . "\n";
                 break;"-----------\n";
+                case '3':
+                    if (empty($alunosCadastrados)) {
+                        echo "Nenhum aluno cadastrado!\n";
+                    break;
+                }
+                    echo "\n===== ALUNOS CADASTRADOS =====\n";
+                    foreach ($alunosCadastrados as $i => $aluno) {
+                    echo ($i+1) . " - " . $aluno->getNome() . " (Casa: " . ($aluno->getCasa() ?? "Sem casa") . ")\n";
+                }
+                    $num = (int)readline("Digite o número do aluno para dar a nota: ") - 1;
+                    if (!isset($alunosCadastrados[$num])) {
+                    echo "Aluno inválido!\n";
+                        break;
+                }
+                $aluno = $alunosCadastrados[$num];
+                $disciplina = readline("Digite a disciplina: ");
+                $nota = (float)readline("Digite a nota: ");
+                // Aqui você pode usar o método do professor ou do gerenciador, conforme sua arquitetura
+                $professorObj = $gerenciador->getProfessorPorNome($nome); // supondo que exista esse método
+                if ($professorObj) {
+                    $professorObj->registrarNota($aluno, $disciplina, $nota);
+                } else {
+                    echo "Professor não encontrado!\n";
+                }
+                break;
                 case '0':
                     echo "SAINDO DO SISTEMA DO PROFESSOR $nome...\n";
                     break;
