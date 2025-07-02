@@ -50,9 +50,9 @@ use App\Model\LufaLufa;
     {
         while (true) {
             echo "BEM VINDO!! AGORA QUE VOCÊ É UM DOS NOSSOS ALUNOS, PRECISA ESCOLHER UMA CASA!🏘 \n";
-            echo "1 - Começar a seleção \n";
-            echo "2 - Ver casa selecionada \n";
-            echo "3 - 🧹Sair \n";
+            echo "1 - ✅ Começar a seleção \n";
+            echo "2 - 🏡 Ver casa selecionada \n";
+            echo "3 - 🧹 Sair \n";
             $Opcao = readline("digite o número do serviço que deseja: ");
 
             switch ($Opcao) {
@@ -81,35 +81,35 @@ use App\Model\LufaLufa;
 
         echo "SEJA BEM VINDO AO CHAPÉU SELETOR!🎩 \n";
         echo "RESPONDA A PERGUNTA DO CHAPÉU PARA SELECIONARMOS A SUA CASA ⬇\n";
-        echo "Quando você morrer, o que gostaria que as pessoas lembrassem de você? \n";
-        echo "1 - Que eu era corajoso \n";
-        echo "2 - Que eu era sábio \n";
-        echo "3 - Que eu era ambicioso \n";
-        echo "4 - Que eu era leal \n";
-        $resposta = readline("DIGITE AQUI O NÚMERO DA OPÇÃO QUE VOCÊ MAIS SE IDENTIFICOU ");
+        echo "--Quando você morrer, como gostaria que as pessoas se lembrassem de você? \n";
+        echo "1 - De que eu era corajoso \n";
+        echo "2 - De que eu era sábio \n";
+        echo "3 - De que eu era ambicioso \n";
+        echo "4 - De que eu era leal \n";
+        $resposta = readline("DIGITE AQUI O NÚMERO DA OPÇÃO QUE VOCÊ MAIS SE IDENTIFICOU: ");
         $casa = null;
         switch ($resposta) {
             case '1':
-               $casa = 'Grifinoria';
+               $casa = 'GRIFINÓRIA! 🦁';
                 break;
             case '2':
-                $casa = 'corvinal';
+                $casa = 'CORVINAL 🦅';
                 break;
             case '3':
-                $casa = 'Sonserina';
+                $casa = 'SONSERINA 🐍';
                 break;
             case '4':
-                $casa = 'LufaLufa';
+                $casa = 'LUFALUFA 🦨';
                 break;
             default:
-                echo "Opção invalida. Por favor, tente novamnete.\n";
+                echo "Opção inválida. Por favor, tente novamente!\n";
                 $this->perguntarSelecionarCasa();
                 return;
         }
         $this->setCasaSelecionada($casa);
         if ($this->aluno) {
             $this->aluno->setCasa($casa);
-            echo "O aluno {$this->aluno->getNome()} foi selecionado para a casa: " . $this->aluno->getCasa() . "\n";
+            echo "---O aluno {$this->aluno->getNome()} foi selecionado para a casa: " . $this->aluno->getCasa() . "\n";
         }
             else {
                 echo "Você foi selecionado para a casa: " . $this->getCasaSelecionada() . "\n";

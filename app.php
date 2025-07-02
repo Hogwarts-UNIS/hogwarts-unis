@@ -15,22 +15,19 @@ use App\Model\Carta;
 
 
 $gerenciador = new gerenciamentoProfissional();
-$gerenciador->cadastrarProfessor("Minerva McGonagall");
-$gerenciador->cadastrarProfessor("Severo Snape");
 
-$gerenciador->associarDisciplina("Minerva McGonagall", "Transfiguração");
-$gerenciador->associarDisciplina("Severo Snape", "Poções");
-
-$gerenciador->associarTurma("Minerva McGonagall", "1º Ano");
-$gerenciador->associarTurma("Severo Snape", "2º Ano");
-
-$gerenciador->addHorarioProfessor("Minerva McGonagall", "Segunda", "08:00 - 10:00");
-$gerenciador->addHorarioProfessor("Minerva McGonagall", "Quarta", "14:00 - 16:00");
-
-$gerenciador->addHorarioProfessor("Severo Snape", "Terça", "10:00 - 12:00");
-$gerenciador->addHorarioProfessor("Severo Snape", "Quinta", "15:00 - 17:00");
-
-$alunosCadastrados = []; // Inicializa o array de alunos cadastrados
+$gerenciador->cadastrarProfessor("Minerva McGonagall", 0, '', false);
+$gerenciador->cadastrarProfessor("Severo Snape", 0, '', false);
+$gerenciador->associarDisciplina("Minerva McGonagall", "Transfiguração", false);
+$gerenciador->associarDisciplina("Severo Snape", "Poções", false);
+$gerenciador->associarTurma("Minerva McGonagall", "1º Ano", false);
+$gerenciador->associarTurma("Severo Snape", "2º Ano", false);
+$gerenciador->addHorarioProfessor("Minerva McGonagall", "Segunda", "10:00", false);
+$gerenciador->addHorarioProfessor("Severo Snape", "Terça", "11:00", false);
+$gerenciador->addHorarioProfessor("Minerva McGonagall", "Quarta", "09:00", false);
+$gerenciador->addHorarioProfessor("Severo Snape", "Quinta", "14:00", false);
+$gerenciador->cadastrarFuncionario("Rubeus Hagrid", "Guardião das Chaves e Terrenos", "Hogsmeade", false);
+$gerenciador->cadastrarFuncionario("Pomona Sprout", "Professora de Herbologia", "Jardim de Herbologia", false);
 
 do {
     echo "=====🏰 BEM VINDO AO MENU DE GERENCIAMENTO PROFISSIONAL DE HOGWARTS 🏰=====\n";
@@ -56,22 +53,22 @@ do {
             break;
         
         case 2: //dos professores
-            echo "🍎 BEM VINDO AO MENU DO PROFESSOR 🍎n";
+            echo "🍎 BEM VINDO AO MENU DO PROFESSOR 🍎\n";
               $nome = readline("Digite o nome do professor: ");
-        echo "\n===== Menu do Professor $nome =====\n";
+        echo "\n===== MENU DO PROFESSOR $nome =====\n";
         do {
             echo "1 - Consultar Cronograma\n";
             echo "0 - Sair\n";
-            $opcao = readline("Selecione uma das opções: ");
+            $opcao = readline("SELECIONE UMA DAS OPÇÕES: ");
             switch ($opcao) {
                 case '1':
                     $gerenciador->consultarCronogramaProfessor($nome);
                     break;
                 case '0':
-                    echo "Saindo do sistema do professor...\n";
+                    echo "SAINDO DO SISTEMA DO PROFESSOR $nome...\n";
                     break;
                 default:
-                    echo "Opção inválida!\n";
+                    echo "OPÇÃO INVÁLIDA\n";
                     break;
             }
         } while ($opcao !== '0');
@@ -79,8 +76,7 @@ do {
         
         case 3: //diretoria de dumbledore
             do{
-                echo "🧙 BEM VINDO AO MENU DO DIRETOR 🧙n";
-                    echo "Menu de gerenciamento do diretor\n";
+                echo "🧙 BEM VINDO AO MENU DE GERENCIAMENTO DO DIRETOR 🧙\n";
                     echo "1 -Cadastrar professor\n";
                     echo "2 -Associar disciplina a professor\n";
                     echo "3 -Associar turma a professor\n";

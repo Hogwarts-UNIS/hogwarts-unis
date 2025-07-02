@@ -61,87 +61,97 @@ class GerenciamentoProfissional
     }
 
     //cadastra novo prof
-    public function cadastrarProfessor(string $nome, int $idade = 0, string $email = ''): bool
+    public function cadastrarProfessor(string $nome, int $idade = 0, string $email = '', bool $exibirMensagem = true): bool
     {
         if (empty(trim($nome))) {
-            echo "Erro: Nome do professor não pode estar vazio!\n";
+            if ($exibirMensagem) echo "Erro: Nome do professor não pode estar vazio!\n";
             return false;
         }
 
         if ($this->buscarProfessor($nome) !== null) {
-            echo "Erro: Professor '$nome' já existe!\n";
+            if ($exibirMensagem) echo "Erro: Professor '$nome' já existe!\n";
             return false;
         }
 
         try {
             $professor = new Professor($nome, $idade, $email);
             $this->professores[] = $professor;
+            if ($exibirMensagem) echo "PROFESSOR $nome FOI CADASTRADO COM SUCESSO!🎉\n";
             return true;
         } catch (Exception $e) {
-            echo "Erro ao cadastrar professor: " . $e->getMessage() . "\n";
+            if ($exibirMensagem) echo "Erro ao cadastrar professor: " . $e->getMessage() . "\n";
             return false;
         }
     }
 
     //associa discip ao prof
-    public function associarDisciplina(string $nomeProfessor, string $disciplina): bool
+    public function associarDisciplina(string $nomeProfessor, string $disciplina, bool $exibirMensagem = true): bool
     {
         $professor = $this->buscarProfessor($nomeProfessor);
         if ($professor === null) {
-            echo "Professor '$nomeProfessor' não encontrado!\n";
+            if ($exibirMensagem) echo "Professor '$nomeProfessor' não encontrado!\n";
             return false;
         }
 
         if (!in_array($disciplina, $this->disciplinasDisponiveis)) {
-            echo "Disciplina '$disciplina' não está disponível!\n";
-            echo "Disciplinas disponíveis: " . implode(', ', $this->disciplinasDisponiveis) . "\n";
+            if ($exibirMensagem) {
+                echo "Disciplina '$disciplina' não está disponível!\n";
+                echo "Disciplinas disponíveis: " . implode(', ', $this->disciplinasDisponiveis) . "\n";
+            }
             return false;
         }
 
         $professor->addDisciplina($disciplina);
+        if ($exibirMensagem) echo "Disciplina '$disciplina' foi associada ao professor '$nomeProfessor' com sucesso!\n";
         return true;
     }
 
     //turma ao prof
-    public function associarTurma(string $nomeProfessor, string $turma): bool
+    public function associarTurma(string $nomeProfessor, string $turma, bool $exibirMensagem = true): bool
     {
         $professor = $this->buscarProfessor($nomeProfessor);
         if ($professor === null) {
-            echo "Professor '$nomeProfessor' não encontrado!\n";
+            if ($exibirMensagem) echo "Professor '$nomeProfessor' não encontrado!\n";
             return false;
         }
 
         if (!in_array($turma, $this->turmasDisponiveis)) {
-            echo "Turma '$turma' não está disponível!\n";
-            echo "Turmas disponíveis: " . implode(', ', $this->turmasDisponiveis) . "\n";
+            if ($exibirMensagem) {
+                echo "Turma '$turma' não está disponível!\n";
+                echo "Turmas disponíveis: " . implode(', ', $this->turmasDisponiveis) . "\n";
+            }
             return false;
         }
 
         $professor->addTurma($turma);
+        if ($exibirMensagem) echo "Turma '$turma' foi associada ao professor '$nomeProfessor' com sucesso!\n";
         return true;
     }
 
     //add horario ao prof
-    public function addHorarioProfessor(string $nomeProfessor, string $dia, string $horario): bool
+    public function addHorarioProfessor(string $nomeProfessor, string $dia, string $horario, bool $exibirMensagem = true): bool
     {
         $professor = $this->buscarProfessor($nomeProfessor);
         if ($professor === null) {
-            echo " Professor '$nomeProfessor' não encontrado!\n";
+            if ($exibirMensagem) echo " Professor '$nomeProfessor' não encontrado!\n";
             return false;
         }
 
         if (!in_array($dia, $this->diasSemana)) {
-            echo "Dia '$dia' não é válido!\n";
-            echo "Dias disponíveis: " . implode(', ', $this->diasSemana) . "\n";
+            if ($exibirMensagem) {
+                echo "Dia '$dia' não é válido!\n";
+                echo "Dias disponíveis: " . implode(', ', $this->diasSemana) . "\n";
+            }
             return false;
         }
 
         if (empty(trim($horario))) {
-            echo "Horário não pode estar vazio!\n";
+            if ($exibirMensagem) echo "Horário não pode estar vazio!\n";
             return false;
         }
 
         $professor->addHorario($dia, $horario);
+        if ($exibirMensagem) echo "Horário '$horario' ($dia) foi adicionado ao professor '$nomeProfessor' com sucesso!\n";
         return true;
     }
 
@@ -189,36 +199,41 @@ class GerenciamentoProfissional
     }
 
     //cadastra novo funcionario
-    public function cadastrarFuncionario(string $nome, string $cargo, string $setor): bool
+    public function cadastrarFuncionario(string $nome, string $cargo, string $setor, bool $exibirMensagem = true): bool
     {
         if (empty(trim($nome)) || empty(trim($cargo)) || empty(trim($setor))) {
-            echo "Erro: Nome, cargo e setor são obrigatórios!\n";
+            if ($exibirMensagem) echo "Erro: Nome, cargo e setor são obrigatórios!\n";
             return false;
         }
 
         if ($this->buscarFuncionario($nome) !== null) {
-            echo "Erro: Funcionário '$nome' já existe!\n";
+            if ($exibirMensagem) echo "Erro: Funcionário '$nome' já existe!\n";
             return false;
         }
 
         if (!in_array($cargo, $this->cargosDisponiveis)) {
-            echo "Cargo '$cargo' não está disponível!\n";
-            echo "Cargos disponíveis: " . implode(', ', $this->cargosDisponiveis) . "\n";
+            if ($exibirMensagem) {
+                echo "Cargo '$cargo' não está disponível!\n";
+                echo "Cargos disponíveis: " . implode(', ', $this->cargosDisponiveis) . "\n";
+            }
             return false;
         }
 
         if (!in_array($setor, $this->setoresDisponiveis)) {
-            echo "Setor '$setor' não está disponível!\n";
-            echo "Setores disponíveis: " . implode(', ', $this->setoresDisponiveis) . "\n";
+            if ($exibirMensagem) {
+                echo "Setor '$setor' não está disponível!\n";
+                echo "Setores disponíveis: " . implode(', ', $this->setoresDisponiveis) . "\n";
+            }
             return false;
         }
 
         try {
             $funcionario = new Funcionario($nome, $cargo, $setor);
             $this->funcionarios[] = $funcionario;
+            if ($exibirMensagem) echo "Funcionário '$nome' cadastrado com sucesso!\n";
             return true;
         } catch (Exception $e) {
-            echo "Erro ao cadastrar funcionário: " . $e->getMessage() . "\n";
+            if ($exibirMensagem) echo "Erro ao cadastrar funcionário: " . $e->getMessage() . "\n";
             return false;
         }
     }
