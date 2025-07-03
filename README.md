@@ -26,8 +26,10 @@ Utiliza Composer e Autoload PSR-4.
 #### 01 - Módulo 1: Convite e Cadastro de alunos.
 
 
-#### 02- Módulo 2: Seleção de casas.
 
+#### 02- Módulo 2: Seleção de casas.
+No Módulo 2, criei as classes correspondentes, incluindo as **casas da trilogia** e o **Chapéu Seletor**, que faz uma pergunta ao usuário e permite escolher a opção que mais se adequa ao seu perfil.
+Também implementei o sistema de distribuição das casas, que exibe o nome do aluno, a casa na qual ele foi selecionado e a pontuação total da casa, que é calculada com base na soma dos pontos de todos os alunos pertencentes a ela.
 
 #### 03- Módulo 3: Gerenciamento de torneios e competições.
 A classe **Casa** controla a pontuação de cada uma das quatro casas, enquanto **Desafio** detalha as provas e suas pontuações. **Inscricao** registra a participação de um aluno em um torneio, e **ResultadoDesafio** armazena os pontos obtidos individualmente. A classe Torneio organiza as grandes competições, agrupando desafios e inscrições. A **DumbledoreOffice** é a peça central do módulo, atuando como um painel de controle. Por meio dela, é possível cadastrar alunos, criar torneios, registrar o desempenho dos alunos e atribuir pontos às casas, além de gerar relatórios e rankings. 
@@ -40,10 +42,12 @@ O módulo conta com as classes: professor, Aluno,funcionário e gerenciamentoPro
 **Professor**-Funções de vínculo com turmas, horários e disciplinas.
 **Aluno**- Para o módulo 5, com o único objetivo de facilitar o entendimento e funcionamento do sistema, sem funções (do módulo 5).
 **Funcionario**- Usa somente a função __toString que tem o objetivo de definir como o objeto será convertido para String.
-**gerenciamentoProfissional**: Peça chave do módulo 5, todas as principais funções do diretor *Dumbledore* estão nessa classe, desde o cadastro de um novo funcionário até a consulta de horários de professores ou envio de avisos aos alunos.
+**gerenciamentoProfissional**: Peça chave do módulo 5, todas as principais funções do diretor **Dumbledore** estão nessa classe, desde o cadastro de um novo funcionário até a consulta de horários de professores ou envio de avisos aos alunos.
 
 #### 06- Módulo 6: Sistema de alertas e comunicação.
-
+Módulo 6
+Criei uma classe chamada **Alerta**, com os atributos notificação e aviso, e métodos que permitem criar um aviso que pode ser enviado pelo professor ou pelo diretor para um aluno. O aluno pode visualizar os avisos na sua área do aluno.
+Cada aviso contém um título, uma mensagem e um tipo de mensagem, que pode indicar, por exemplo, se o conteúdo é informativo, urgente ou um lembrete.
 
 
 #### Conclusão final: Um resumo sobre tudo que criamos.
