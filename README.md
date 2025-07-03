@@ -35,7 +35,8 @@ Também implementei o sistema de distribuição das casas, que exibe o nome do a
 A classe **Casa** controla a pontuação de cada uma das quatro casas, enquanto **Desafio** detalha as provas e suas pontuações. **Inscricao** registra a participação de um aluno em um torneio, e **ResultadoDesafio** armazena os pontos obtidos individualmente. A classe Torneio organiza as grandes competições, agrupando desafios e inscrições. A **DumbledoreOffice** é a peça central do módulo, atuando como um painel de controle. Por meio dela, é possível cadastrar alunos, criar torneios, registrar o desempenho dos alunos e atribuir pontos às casas, além de gerar relatórios e rankings. 
 
 #### 04- Módulo 4: Controle acadêmico e disciplinar. 
-
+Nesse módulo criei um menu interativo onde você pode adicionar notas para alunos, consultar boletins, adicionar penalização para as casas, todas as informações importantes como notas ou pontos de uma casa foram protegidas usando encapsulamento, assim pode ser acessadas ou modificadas pelos métodos corretos.
+(Professor Ângelo tive um pequeno imprevisto com meu computador na hora de subir os códigos, por isso meu nome não está nos commits, meu amigo Diogo subiu meus códigos para mim como uma opção B, por isso meu nome não aparece no histórico dos códigos.)
 
 #### 05- Módulo 5: Gerenciamento de professores e funcionários.
 O módulo conta com as classes: professor, Aluno,funcionário e gerenciamentoProfissional. Que contam com esses  objetivos:
