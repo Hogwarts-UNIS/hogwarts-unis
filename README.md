@@ -24,7 +24,7 @@ Utiliza Composer e Autoload PSR-4.
 ### ✅ Módulos Implementados
 
 #### 01 - Módulo 1: Convite e Cadastro de alunos.
-
+Nesse módulo, foi criada a parte responsável pelos alunos que recebem seu convite da Coruja. O cadastro do aluno é realizado na área da Coruja, onde são inseridos o nome, a idade e o e-mail. Após o cadastro, o convite é enviado ao aluno, que precisa aceitá-lo para ter acesso ao sistema. É necessário ter uma idade mínima para aceitar o convite. Somente após essa aceitação, o aluno consegue acessar o menu do aluno. Caso o convite não tenha sido aceito ou não exista, o acesso ao menu é bloqueado.
 
 
 #### 02- Módulo 2: Seleção de casas.
@@ -52,11 +52,6 @@ Cada aviso contém um título, uma mensagem e um tipo de mensagem, que pode indi
 
 #### Conclusão final: Um resumo sobre tudo que criamos.
 A interação com o sistema se dá via terminal, por meio de um menu de opções numeradas e entrada de dados guiada, tornando o uso direto e fácil de acompanhar. Com organização e uso de POO, o sistema foi desenvolvido cumprindo as exigências que foram pedidas e um pouco mais, trazendo uma interface detalhada e harmoniosa
-
-
-
-
-
 
 ### 🚀 Como Usar
 
