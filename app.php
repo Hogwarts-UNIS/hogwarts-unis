@@ -15,7 +15,7 @@ use App\Model\Carta;
 use App\Model\Alerta;
 use App\Model\Torneio;
 use App\Model\Avaliacao;
-
+use App\Model\Casa;
 
 
 
@@ -44,6 +44,7 @@ do {
     echo "3 - 🧙 Área do Diretor\n";
     echo "4 - 🏆 Torneios e Desafios\n";
     echo "5 - 🦉 Enviar convite \n";
+    echo "6 - 🏠 Distribuição de casas\n";
     echo "0 - 🧹 Sair do sistema\n";
     $perfil = readline("QUAL É O NÚMERO DO SEU PERFIL?");
 
@@ -450,6 +451,24 @@ do {
                 echo "Aluno inválido!\n";
             }
             break;
+        case 6:
+            echo "\n===== 🏠 DISTRIBUIÇÃO DE CASAS 🏠=====\n";
+            if (empty($alunosCadastrados)) {
+                echo "Nenhum aluno cadastrado para distribuição de casas.\n";
+                break;
+            }
+            $casas = [
+                new Casa("Grifinória"),
+                new Casa("Sonserina"),
+                new Casa("Corvinal"),
+                new Casa("Lufa-Lufa")
+            ];
+            foreach ($alunosCadastrados as $aluno) {
+                $casa = $casas[array_rand($casas)];
+                $casa->adicionarAluno($aluno);
+                $aluno->setCasa($casa->getNome());
+                echo "Aluno {$aluno->getNome()} está na casa {$casa->getNome()} que está com {$casa->getPontosAvaliacao()} no total!\n";
+            }
      case '0':
             echo "Saindo do sistema. Até mais, trouxa!\n";
             break;

@@ -3,8 +3,9 @@ namespace App\Model;
 
 class Casa
 {
-    private string $nome;
-    private int $pontuacao = 0;
+    protected string $nome;
+    protected array $alunos = [];
+    protected int $pontosAvaliacao = 0;
 
     public function __construct(string $nome)
     {
@@ -16,13 +17,29 @@ class Casa
         return $this->nome;
     }
 
-    public function adicionarPontos(int $pontos): void
+        public function setPontosAvaliacao(int $pontos): void
     {
-        $this->pontuacao += $pontos;
+        $this->pontosAvaliacao = $pontos;
     }
 
-    public function getPontuacaoTotal(): int
+    public function getPontosAvaliacao(): int
     {
-        return $this->pontuacao;
+        return $this->pontosAvaliacao;
     }
+    
+    public function adicionarAluno(Aluno $aluno): void 
+    {
+        $this->alunos[] = $aluno;
+        $this->pontosAvaliacao++;
+    
+    }
+    public function getAlunos(): array
+    {
+        return $this->alunos;
+    }
+    public function getQuantidadeAlunos(): int
+    {
+        return count($this->alunos);
+    }
+
 }
