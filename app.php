@@ -44,7 +44,7 @@ do {
     echo "3 - 🧙 Área do Diretor\n";
     echo "4 - 🏆 Torneios e Desafios\n";
     echo "5 - 🦉 Enviar convite \n";
-    echo "0 - 🚪 Sair do sistema\n";
+    echo "0 - 🧹 Sair do sistema\n";
     $perfil = readline("QUAL É O NÚMERO DO SEU PERFIL?");
 
     switch ($perfil){
