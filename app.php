@@ -44,6 +44,7 @@ do {
     echo "3 - 🧙 Área do Diretor\n";
     echo "4 - 🏆 Torneios e Desafios\n";
     echo "5 - 🦉 Enviar convite \n";
+    echo "0 - 🚪 Sair do sistema\n";
     $perfil = readline("QUAL É O NÚMERO DO SEU PERFIL?");
 
     switch ($perfil){
@@ -449,17 +450,16 @@ do {
                 echo "Aluno inválido!\n";
             }
             break;
-
+     case '0':
+            echo "Saindo do sistema. Até mais, trouxa!\n";
+            break;
         default:
             echo "Perfil inválido. Tente novamente.\n";
-            $aluno = new Aluno($nome, $idade, $email);
-            $aluno->setCasa($casa);
-            $dumbledoreOffice->registrarAluno($aluno);
-            $alunosCadastrados[] = $aluno;            break;
+            break;
     }
 } while ($perfil !== '0');
 
-echo "Agradecemos por usar nosso sistema, até mais, trouxa!\n";
+
 
 
 
