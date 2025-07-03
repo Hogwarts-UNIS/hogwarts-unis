@@ -45,9 +45,9 @@ O módulo conta com as classes: professor, Aluno,funcionário e gerenciamentoPro
 **gerenciamentoProfissional**: Peça chave do módulo 5, todas as principais funções do diretor **Dumbledore** estão nessa classe, desde o cadastro de um novo funcionário até a consulta de horários de professores ou envio de avisos aos alunos.
 
 #### 06- Módulo 6: Sistema de alertas e comunicação.
-Módulo 6
-Criei uma classe chamada **Alerta**, com os atributos notificação e aviso, e métodos que permitem criar um aviso que pode ser enviado pelo professor ou pelo diretor para um aluno. O aluno pode visualizar os avisos na sua área do aluno.
-Cada aviso contém um título, uma mensagem e um tipo de mensagem, que pode indicar, por exemplo, se o conteúdo é informativo, urgente ou um lembrete.
+Criei uma classe chamada **Alerta** com atributos de notificações e avisos, com métodos que criam um aviso em que professores e o diretor poderão enviar aos alunos e, assim, o aluno poderá visualizar os avisos em sua área de aluno. No aviso, professor ou diretor poderão incluir o título da mensagem, o corpo da mesma e o tipo de mensagem que será enviada. 
+
+(Professor Angelo, há um commit sobre essa parte que diz "parte do juliano" por favor desconsiderar, pois o Juliano saiu do nosso grupo e fez sozinho, dessa forma, o Diogo teve que fazer a parte dele.)
 
 
 #### Conclusão final: Um resumo sobre tudo que criamos.
