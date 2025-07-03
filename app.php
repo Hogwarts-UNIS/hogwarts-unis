@@ -245,7 +245,7 @@ do {
                             $alerta = new Alerta($notificacao, $aviso, $tipo);
                             $avisosGerais[] = $alerta;
                             echo "Notificação Criada!\n";
-                            echo "Titulo: " . $alerta->getnotificacao() . "\n";
+                            echo "Título: " . $alerta->getnotificacao() . "\n";
                             echo "Aviso: " .$alerta->getaviso() . "\n";
                             echo "Tipo: " . $alerta->gettipo() . "\n";
                             case 0:

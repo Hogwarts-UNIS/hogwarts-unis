@@ -28,7 +28,9 @@ class DumbledoreOffice
         $this->casas['Sonserina'] = new Casa('Sonserina');
         $this->casas['Lufa-Lufa'] = new Casa('Lufa-Lufa');
         $this->casas['Corvinal'] = new Casa('Corvinal');
-        echo "Casas de Hogwarts inicializadas.\n";
+        if (isset($GLOBALS['exibirMensagemCasas']) && $GLOBALS['exibirMensagemCasas']) {
+            echo "Casas de Hogwarts inicializadas.\n";
+        }
     }
 
     public function getCasa(string $nomeCasa): ?Casa

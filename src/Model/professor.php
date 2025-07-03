@@ -5,9 +5,9 @@ use App\Model\Avaliacao;
 require_once __DIR__ . '/Bruxo.php';
 require_once __DIR__ . '/Avaliacao.php';
 class professor extends Bruxo {
-    private $disciplinas;
-    private $turmas;
-    private $cronograma;
+    protected $disciplinas;
+    protected $turmas;
+    protected $cronograma;
   
 
  public function __construct(string $nome, int $idade = 0, string $email = '') {
